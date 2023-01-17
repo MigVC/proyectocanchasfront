@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Login } from '../Login'
 
 export const NavbarHome = () => {
+    const [navbar, setNavbar] = useState(false)
+
+  const changeBackground = () => {
+    if(window.scrollY >= 120){
+      setNavbar(true)
+    }
+    else{
+      setNavbar(false)
+    }
+  }
+
+  window.addEventListener("scroll", changeBackground)
     return (
-        <div className='navbar navbar-dark navbar-expand-lg navHome'>
+        <div className={'navbar navbar-expand-lg fixed-top navbar-dark px-3 '+ (navbar ? "colorPrim":"")}>
             <button
                 className='navbar-toggler'
                 type="button"
@@ -17,7 +29,7 @@ export const NavbarHome = () => {
                 <span className='navbar-toggler-icon'></span>
 
             </button>
-            <div className='px-5 navbar-brand row collapse navbar-collapse' id="menu">
+            <div className='px-5 navbar-brand collapse navbar-collapse' id="menu">
                 <div className='fs-6 col-md-5 col-sm-12'>
                 <NavLink className="nav-item nav-link text-light fw-bold" to="/">
                 <span className='mx-2'>

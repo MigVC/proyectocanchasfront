@@ -1,11 +1,12 @@
 import React from 'react'
+import { Navbar } from '../../components/Navbar'
 import { NavbarHome } from './NavbarHome'
 import { PieHome } from './PieHome'
 
 export const HomeScreen = () => {
   return (
     <div className='banner'>
-      <NavbarHome />
+      
 
       <div className='py-5 px-lg-5 px-md-3 px-1'>
         <div className='py-5 text-light text-center'>
@@ -13,9 +14,10 @@ export const HomeScreen = () => {
           <p>
             Busca entre diferentes canchas, filtra por ubicación, tamaño, puntaje y escoge la que mejor se acomode a tu disponibilidad de tiempo.
           </p>
-          <button className='btn btn-outline-info text-light border border-info border-4 fs-5 mt-5'>
+          
+          <a href="Dashboard" role="button" className='btn btn-outline-info text-light border border-info border-4 fs-5 mt-5'>
             Ver listado de canchas
-          </button>
+          </a>
         </div>
       </div>
 

@@ -1,17 +1,22 @@
 import React from 'react'
-import { Routes, Route, HashRouter } from "react-router-dom"
-import { HomeScreen } from '../pages/home/HomeScreen'
+import { Routes, Route, BrowserRouter } from "react-router-dom"
 import { Registro } from '../pages/register/Registro'
+import { Navbar } from '../components/Navbar'
+import { HomeScreen } from '../pages/home/HomeScreen'
+import { DashBoard } from '../pages/DashBoard/DashBoard'
 
 
 export const AppRouter = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
+      <Navbar/>
       <Routes>
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/register" element={<Registro />} />
+        <Route path="Registrarse" element={<Registro />} />
+        <Route path="DashBoard" element={<DashBoard />} />
+        <Route exact path="/" element={<HomeScreen />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
+    
 
   )
 }

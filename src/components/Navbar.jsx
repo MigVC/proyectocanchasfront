@@ -1,6 +1,6 @@
 import React from 'react'
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
-import { AppBar, Box, Button, IconButton, Link, Modal, styled, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Modal, styled, Toolbar, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -8,11 +8,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { teal } from '@mui/material/colors';
-import { Login } from '../pages/Login';
-
-//Trabajar con href o to ?
+import { Login } from '../pages/Usuario/Login';
+import { LoginCanchero } from '../pages/Canchero/Login';
+import { Outlet } from 'react-router-dom';
+// import { router, rutas } from '../router/RoutesPrincipal';
 
 const style = {
     position: 'absolute',
@@ -39,7 +40,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
     },
   }));
 export const Navbar = () => {
-    
+  
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -47,10 +48,13 @@ export const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [open2, setOpen2] = React.useState(false);
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-        <Link style={{textDecoration:"none", color:"black"}} href="/">
+        <Link style={{textDecoration:"none", color:"black"}} to="/">
             <Typography variant="h6" sx={{ my: 2 }}>
                 Canchitas
             </Typography>
@@ -75,10 +79,10 @@ export const Navbar = () => {
                     <Login/>
                 </Box>
             </Modal>
-            <ListItem  key={navItems[1]} disablePadding>
-                <Link style={{textDecoration:"none", color:"black"}} href={`/${navItems[1]}`}> 
+            <ListItem  key={'registro'} disablePadding>
+                <Link style={{textDecoration:"none", color:"black"}} to={`/registro`}> 
                 <ListItemButton >
-                    <ListItemText primary={navItems[1]} />
+                    <ListItemText primary={'Registrarse'} />
                 </ListItemButton>
                 </Link>
             </ListItem>
@@ -86,6 +90,7 @@ export const Navbar = () => {
     </Box>
   );
     return (
+        <div>
         <AppBar position='sticky' color='primary' >
             <Toolbar>
                 <Box sx={{flexGrow: 0.42,display: { sm: 'none',xs:'block' }}}>
@@ -105,7 +110,7 @@ export const Navbar = () => {
                     // aria-label="menu"
                     sx={{ mr: 2, display:{ xs: 'none', sm: 'block' } }}
                 >
-                    <Link  href="/">
+                    <Link  to="/">
                     <SportsSoccerIcon color='iconNavbar' sx={{width: 50, height: 50}}/>
                     </Link>
                 </IconButton>
@@ -126,10 +131,23 @@ export const Navbar = () => {
                             <Login/>
                         </Box>
                     </Modal>
-                    <ColorButton key={navItems[1]}  variant="contained" sx={{margin:'8px', color: '#fff' }}>
+                    <ColorButton  onClick={handleOpen2} key={'Canchero'}  variant="contained" sx={{margin:'8px', color: '#fff' }}>
+                        {"Canchero"}
+                    </ColorButton>
+                    <Modal
+                        open={open2}
+                        onClose={handleClose2}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <LoginCanchero/>
+                        </Box>
+                    </Modal>
+                    <ColorButton key={'registro'}  variant="contained" sx={{margin:'8px', color: '#fff' }}>
                         <nav>
-                        <Link style={{textDecoration:"none", color:"white"}} href={`/${navItems[1]}`}>
-                        {navItems[1]}
+                        <Link style={{textDecoration:"none", color:"white"}} to={`/registro`}>
+                        Registrarse
                         </Link>
                         </nav>
                     </ColorButton>
@@ -137,7 +155,7 @@ export const Navbar = () => {
                 <IconButton
                    sx={{ position:'relative',display: { xs: 'block', sm: 'none' }, }}
                 >
-                    <Link href="/">
+                    <Link to="/">
                     <SportsSoccerIcon color='iconNavbar' sx={{width: 50, height: 50}}/>
                     </Link>
                 </IconButton>
@@ -155,7 +173,10 @@ export const Navbar = () => {
             >
                 {drawer}
             </Drawer>
+            
         </AppBar>
+        <Outlet/>
+        </div>
     
   )
 };

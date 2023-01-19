@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Login } from '../Login'
+import { Login } from '../Usuario/Login'
 
 export const NavbarHome = () => {
     const [navbar, setNavbar] = useState(false)

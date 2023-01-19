@@ -15,7 +15,7 @@ export const HomeScreen = () => {
             Busca entre diferentes canchas, filtra por ubicación, tamaño, puntaje y escoge la que mejor se acomode a tu disponibilidad de tiempo.
           </p>
           
-          <a href="Dashboard" role="button" className='btn btn-outline-info text-light border border-info border-4 fs-5 mt-5'>
+          <a href="/canchitas" role="button" className='btn btn-outline-info text-light border border-info border-4 fs-5 mt-5'>
             Ver listado de canchas
           </a>
         </div>

@@ -1,48 +1,23 @@
-import { Box, List, ListItem, ListItemText, MenuItem, TextField } from '@mui/material'
+import { Box, Grid, List, ListItem, ListItemText, MenuItem, Paper, TextField } from '@mui/material'
 import React from 'react'
-
-const Valores = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
+import { CardCanchas } from './layout/CardCanchas'
 
 
 export const Feed = () => {
+  const [spacing, setSpacing] = React.useState(2);
   return (
     <Box bgcolor='lightcyan' flex={3}>
-      <List>
-        <ListItem>
-          <ListItemText>
-          <TextField
-          id="outlined-select-currency"
-          select
-          label="Select"
-          defaultValue="EUR"
-          helperText="Please select your currency"
-        >
-          {Valores.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
+      <Grid sx={{ flexGrow: 1 }} container spacing={2}>
+      <Grid item xs={12}>
+        <Grid container justifyContent="center" spacing={spacing}>
+          {[0, 1, 2,3,4,5,6].map((value) => (
+            <Grid key={value} item>
+              <CardCanchas/>
+            </Grid>
           ))}
-        </TextField>
-          </ListItemText>
-        </ListItem>
-      </List>
+        </Grid>
+      </Grid>
+      </Grid>
     </Box>
   )
 }

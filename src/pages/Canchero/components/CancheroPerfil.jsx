@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, Grid, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 

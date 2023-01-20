@@ -146,7 +146,7 @@ export const Navbar = () => {
                     </Modal>
                     <ColorButton key={'registro'}  variant="contained" sx={{margin:'8px', color: '#fff' }}>
                         <nav>
-                        <Link style={{textDecoration:"none", color:"white"}} to={`/registro`}>
+                        <Link style={{textDecoration:"none", color:"white"}} to={`/registroAd`}>
                         Registrarse
                         </Link>
                         </nav>

@@ -1,6 +1,4 @@
 import React from 'react'
-import { Navbar } from '../../components/Navbar'
-import { NavbarHome } from './NavbarHome'
 import { PieHome } from './PieHome'
 
 export const HomeScreen = () => {

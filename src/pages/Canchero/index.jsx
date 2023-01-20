@@ -1,6 +1,5 @@
 import React from 'react'
-import { Box, Grid,Button, Stack } from '@mui/material'
-import { Feed } from '../../components/Feed'
+import { Box, Grid, Stack } from '@mui/material'
 import { CardCanchas } from '../../components/layout/CardCanchas';
 export const DashBoardCanchero = () => {
   const [spacing, setSpacing] = React.useState(2);

@@ -1,6 +1,6 @@
 import React from 'react'
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
-import { AppBar, Box, Button, IconButton, Link, Modal, styled, Toolbar, Typography } from '@mui/material';
+import { AppBar, IconButton, Link, Toolbar, Typography } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
 //Trabajar con href o to ?

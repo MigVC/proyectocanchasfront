@@ -1,6 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
-import { HomeScreen } from "../pages/Home/HomeScreen";
-import { Registro } from "../pages/Registro/Registro";
+
 import { Navbar } from '../components/Navbar'
 import { DashBoard } from '../pages/DashBoard/DashBoard'
 import { DashBoardCanchero } from '../pages/Canchero'
@@ -9,6 +7,9 @@ import { Canchita } from "../components/layout/Canchita";
 import { NavbarCanchero } from "../pages/Canchero/components/Navbar";
 import { NavbarUsuario } from "../pages/Usuario/components/Navbar";
 import { CancheroPerfil } from "../pages/Canchero/components/CancheroPerfil";
+import { HomeScreen } from "../pages/home/HomeScreen";
+import { FormCanchero } from "../pages/Registro/FormCanchero";
+import { FormUsuario } from '../pages/Registro/FormUsuario';
 export const rutas=([
   {
     path:"/",
@@ -17,13 +18,18 @@ export const rutas=([
     children:[
       {
         path:"/",
-        element:<HomeScreen/>,
+        element:<HomeScreen />,
         name:"Home"
       },
       {
-        path:"/registro",
-        element:<Registro/>,
-        name:"Registrarse"
+        path:"/registroAd",
+        element:<FormCanchero />,
+        name:"RegistrarCanchero"
+      },
+      {
+        path:"/registroDep",
+        element:<FormUsuario />,
+        name:"RegistrarUsuario"
       },
       {
         path:"/canchitas",

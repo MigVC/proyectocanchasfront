@@ -3,13 +3,14 @@ import { Navbar } from '../components/Navbar'
 import { DashBoard } from '../pages/DashBoard/DashBoard'
 import { DashBoardCanchero } from '../pages/Canchero'
 import { DashBoardUsuario } from '../pages/Usuario'
-import { Canchita } from "../components/layout/Canchita";
 import { NavbarCanchero } from "../pages/Canchero/components/Navbar";
 import { NavbarUsuario } from "../pages/Usuario/components/Navbar";
 import { CancheroPerfil } from "../pages/Canchero/components/CancheroPerfil";
-import { HomeScreen } from "../pages/home/HomeScreen";
+import {HomeScreen} from "../pages/Home/HomeScreen";
 import { FormCanchero } from "../pages/Registro/FormCanchero";
 import { FormUsuario } from '../pages/Registro/FormUsuario';
+import { InfoRegistro } from '../pages/Registro/InfoRegistro';
+import { TableroCanchita } from '../pages/Canchero/Canchita/TableroCanchita';
 export const rutas=([
   {
     path:"/",
@@ -20,6 +21,11 @@ export const rutas=([
         path:"/",
         element:<HomeScreen />,
         name:"Home"
+      },
+      {
+        path:"/registro",
+        element:<InfoRegistro />,
+        name:"Registro"
       },
       {
         path:"/registroAd",
@@ -35,14 +41,14 @@ export const rutas=([
         path:"/canchitas",
         element:<DashBoard/>,
         name:"Canchitas",
-        children:[
-          {
-            path:"/canchitas/:id",
-            element:<Canchita/>,
+        // children:[
+        //   {
+        //     path:"/canchitas/:id",
+        //     element:<Canchita/>,
             
-          }
+        //   }
           
-        ]
+        // ]
       },
     ]
   },
@@ -52,7 +58,7 @@ export const rutas=([
     name:"Canchero",
     children:[
       {
-        path:"/canchero",
+        path:"/canchero/",
         element:<DashBoardCanchero/>,
         name:"HomeCanchero"
       },
@@ -60,6 +66,11 @@ export const rutas=([
         path:"/canchero/perfil",
         element:<CancheroPerfil/>,
         name:"Canchero Perfil"
+      },
+      {
+        path:"/canchero/canchita/:cancheroid",
+        element:<TableroCanchita/>,
+        name:"Tablero Canchita"
       },
       
     ]

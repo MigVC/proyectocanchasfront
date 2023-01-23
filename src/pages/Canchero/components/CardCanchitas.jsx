@@ -5,24 +5,25 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
+import { Stack } from '@mui/material';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
-import { Stack } from '@mui/material';
-export const CardCanchas = () => {
-  const [star, setStar] = useState(0);
+
+export const CardCanchitas = ({props}) => {
+  const [star, setStar] = useState(3);
   const [hoverStar, setHoverStar] = useState(0);
-  
   return (
-    <Card sx={{ overflow:'hidden', transition:'0.3s',animation:'ease-in','&:hover':{transform:'scale(1.05)'},maxWidth: 250 }}>
+    <Card sx={{ maxWidth: 250 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt={props.name}
         height="140"
-        image="https://donpotrero.com/img/posts/2/medidas_lg.jpg"
+        image={props.image}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Futbolero
+          {props.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           La canchita esta en perfectas condiciones 
@@ -31,11 +32,13 @@ export const CardCanchas = () => {
           Alquilamos polos, pelotas
         </Typography>
       </CardContent>
-      <CardActions  >
+      <CardActions>
+        
+        
         <Stack direction="row" spacing={2} justifyContent='space-between'>
 
-        
-        <Button style={{left:1,}} size="small" startIcon={<ReadMoreIcon />}>Ver</Button>
+        <Link style={{textDecoration:"none"}} to={`/canchero/canchita/${props.id}`}>
+        <Button style={{left:1,}} size="small" startIcon={<ReadMoreIcon />}>Ver</Button></Link>
         <div >
         {[1,2,3,4,5].map((index)=>{
           const valueStar=index

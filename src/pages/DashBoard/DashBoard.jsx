@@ -2,22 +2,27 @@ import { Box, Stack } from '@mui/material'
 import React from 'react'
 import { Sidebar } from '../../components/Sidebar'
 import { Feed } from '../../components/Feed'
-
+import SearchIcon from '@mui/icons-material/Search';
+import { stylesNavBar } from '../../context/theme';
 export const DashBoard = () => {
   return (
     <Box>
       
       <Stack>
         
-      <Box component="span" sx={{ p:4,textAlign: 'center', border: '1px dashed grey' }}>
-      <h1>Encuentra tu Canchita</h1>
-    </Box>
-        </Stack>
-        <Stack direction="row" spacing={2} justifyContent="space-between" >
+        <Box component="span" alignContent='center' sx={{ p:4,textAlign: 'center',...stylesNavBar.titleBackGround }}>
+          <div style={{justifyContent:'space-between'}}>
+          <Sidebar/>
+          
+          </div>
+          
+        </Box>
+      </Stack>
+      <Stack direction='column' spacing={2} justifyContent='space-between' sx={{margin:0}} >
             
-            <Sidebar/>
+            
             <Feed/>
-        </Stack>
+      </Stack>
     </Box>
   )
 }

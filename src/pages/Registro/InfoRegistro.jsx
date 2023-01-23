@@ -1,10 +1,12 @@
 
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 
 export const InfoRegistro = () => {
     return (
+        <>
+        
         <div className='container mx-0'>
             <div className='row '>
                 <div className='col-lg-12 col-sm-6'>
@@ -39,6 +41,9 @@ export const InfoRegistro = () => {
                 </div>
 
             </div>
+            
         </div>
+        <Outlet/>
+        </>
     )
 }

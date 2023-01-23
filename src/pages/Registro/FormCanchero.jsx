@@ -1,5 +1,6 @@
-import React from 'react'
 import { Formik } from 'formik'
+import React from 'react'
+import { Outlet } from 'react-router'
 import { InfoRegistro } from './InfoRegistro'
 
 export const FormCanchero = () => {
@@ -168,6 +169,7 @@ export const FormCanchero = () => {
                             )
                         }
                     </Formik>
+                    <Outlet/>
                 </div>
             </div>
 

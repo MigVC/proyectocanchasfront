@@ -8,9 +8,25 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { stylesNavBar } from '../../../context/theme';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 const pages = ['Agregar'];
-const settings = ['perfil', 'Account', 'Dashboard', 'logout'];
-
+const settings = ['perfil', '/'];
+const settingsLabel = ['Perfil', 'Salir'];
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    alignItems:'center',
+    width: 450,
+    height: 450,
+    borderRadius: 8,
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+  };
 export const NavbarCanchero = () => {
     
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -33,24 +49,25 @@ export const NavbarCanchero = () => {
 
     return (
         <>
-        <AppBar position='sticky' color='primary' >
+        <AppBar position='sticky' style={stylesNavBar.root}>
         <Container maxWidth="xl">
         <Toolbar disableGutters>
+         <Link to='/canchero'>
           <SportsSoccerIcon color='iconNavbar' sx={{width: 50, height: 50, display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          </Link>
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/canchero"
             color={{color:'white'}}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              // fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-            //   color: 'inherit',
+              color: 'inherit',
               textDecoration: 'none',
+              flexGrow:1,
               
             }}
           >
@@ -64,7 +81,7 @@ export const NavbarCanchero = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color="iconNavbar"
             >
               <MenuIcon />
             </IconButton>
@@ -93,43 +110,48 @@ export const NavbarCanchero = () => {
               ))}
             </Menu>
           </Box>
+          <Link  to="/canchero">
           <SportsSoccerIcon color='iconNavbar' sx={{ display: { width: 40, height: 40,xs: 'flex', md: 'none' }, mr: 1 }} />
+          </Link>
           <Typography
             variant="h5"
-            noWrap
-            component="a"
-            href=""
+            // noWrap
+            component="div"
+            
             color={{color:'white'}}
             sx={{
-              mr: 2,
+              // mr: 2,
               display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
+              
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               
               textDecoration: 'none',
+              flexGrow: 1,
               
             }}
           >
             Canchero
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{  display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
+              <Tooltip key={page} title="Agregar canchita">
+              <IconButton
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{  color: 'white', display: 'block' }}
               >
-                {page}
-              </Button>
+                <AddBoxIcon sx={{width:40,height:40,color:'#f0f4c3'}} />
+              </IconButton>
+              </Tooltip>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <Tooltip title="Configuraciones">
+              <IconButton onClick={handleOpenUserMenu} sx={{ ml:2, }}>
+                <Avatar sx={{width:40,height:40}} alt="Remy Sharp" src="https://imgmedia.elpopular.pe/640x345/elpopular/original/2022/10/16/634c017d3b29104a0834810c.webp" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -148,10 +170,10 @@ export const NavbarCanchero = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {settings.map((setting,index) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Link to={`/canchero/${setting}`}>
-                    <Typography  textAlign="center">{setting}</Typography>
+                    <Link style={{textDecoration:"none", color:"grey"}} to={`/canchero/${setting}`}>
+                    <Typography  textAlign="center">{settingsLabel[index]}</Typography>
                     </Link>
                   
                 </MenuItem>

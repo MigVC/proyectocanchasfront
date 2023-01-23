@@ -1,11 +1,12 @@
 import React from 'react'
+
 import { PieHome } from './PieHome'
 
 export const HomeScreen = () => {
   return (
     <div className='banner'>
       
-
+      
       <div className='py-5 px-lg-5 px-md-3 px-1'>
         <div className='py-5 text-light text-center'>
           <h1 className='p-5'> Encuentra una cancha al instante </h1>
@@ -13,7 +14,7 @@ export const HomeScreen = () => {
             Busca entre diferentes canchas, filtra por ubicación, tamaño, puntaje y escoge la que mejor se acomode a tu disponibilidad de tiempo.
           </p>
           
-          <a href="/canchitas" role="button" className='btn btn-outline-info text-light border border-info border-4 fs-5 mt-5'>
+          <a href="/canchitas" role="button" className='btn btn-info text-light fs-5 mt-5'>
             Ver listado de canchas
           </a>
         </div>
@@ -41,9 +42,11 @@ export const HomeScreen = () => {
             <p>
               Regístrate ahora y accede a nuestros beneficios
             </p>
-            <button className='btn btn-outline-info text-light border border-info border-4 fs-5 mt-5'>
+            
+            <a  href="/registro" role="button" className='btn btn-info text-light  fs-5 mt-5'>
               Registrarse
-            </button>
+            </a>
+            
           </div>
         </div>
       </div>

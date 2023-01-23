@@ -73,7 +73,7 @@ export const Login = () => {
                     bottom: 75,
 
                 }}>
-                    <Container component="main" maxWidth="xs" sx={{}}  >
+                    <Container component="main" maxWidth="xs"   >
                         <Box
                             sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                         >

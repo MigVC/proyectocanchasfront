@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik } from 'formik'
 import { InfoRegistro } from './InfoRegistro'
+import { Outlet } from 'react-router'
 
 export const FormUsuario = () => {
     return (
@@ -129,6 +130,7 @@ export const FormUsuario = () => {
 
 
                     </Formik>
+                    <Outlet/>
                 </div>
             </div>
 

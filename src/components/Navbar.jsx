@@ -240,7 +240,7 @@ export const Navbar = () => {
                 </Typography>
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <ColorButton  onClick={handleOpen} key={'iniciarsesion'}  variant="contained" >
-                        Inisiar Sesión
+                        Iniciar Sesión
                     </ColorButton>
                     <Modal
                         open={open}
@@ -268,7 +268,7 @@ export const Navbar = () => {
                     </Modal>
                     <ColorButton key={'registro'}  variant="contained" >
                         <nav>
-                        <Link style={{textDecoration:"none", color:"white"}} to={`/registro`}>
+                        <Link style={{textDecoration:"none", color:"white"}} to={`/registroAd`}>
                         Registrarse
                         </Link>
                         </nav>

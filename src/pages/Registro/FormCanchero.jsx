@@ -1,8 +1,7 @@
-import { Formik } from 'formik'
 import React from 'react'
-import { Outlet } from 'react-router'
+import { Formik } from 'formik'
 import { InfoRegistro } from './InfoRegistro'
-
+import { Outlet } from 'react-router'
 export const FormCanchero = () => {
     return (
         <div className='container mx-0'>
@@ -25,8 +24,8 @@ export const FormCanchero = () => {
                             telefono: "",
                             avatar: "",
                             correo: "",
-                            contraseña: "",
-                            confirmacionContraseña: ""
+                            password: "",
+                            passwordConfirmation: ""
                         }}
 
                         onSubmit={async (values, actions) => {
@@ -139,26 +138,26 @@ export const FormCanchero = () => {
 
                                     <div className='row'>
                                         <div className='col-lg-6 col-sm-12 my-2'>
-                                            <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Contraseña </label>
+                                            <label className='fw-bold' style={{ "fontFamily": "cambria" }}> password </label>
                                             <input
-                                                name="contraseña"
+                                                name="password"
                                                 onChange={handleChange}
                                                 type="text"
                                                 className='form-control border border-dark'
-                                                placeholder='Ingresa tu contraseña'
-                                                value={values.contraseña}
+                                                placeholder='Ingresa tu password'
+                                                value={values.password}
                                             />
                                         </div>
 
                                         <div className='col-lg-6 col-sm-12 my-2'>
-                                            <label className='fw-bold' style={{ "fontFamily": "cambria" }}>Confirmar contraseña </label>
+                                            <label className='fw-bold' style={{ "fontFamily": "cambria" }}>Confirmar password </label>
                                             <input
-                                                name="confirmacionContraseña"
+                                                name="passwordConfirmation"
                                                 onChange={handleChange}
                                                 type="text"
                                                 className='form-control border border-dark'
-                                                placeholder='Confirma tu contraseña'
-                                                value={values.confirmacionContraseña}
+                                                placeholder='Confirma tu password'
+                                                value={values.passwordConfirmation}
                                             />
                                         </div>
                                     </div>

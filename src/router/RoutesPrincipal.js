@@ -6,11 +6,10 @@ import { DashBoardUsuario } from '../pages/Usuario'
 import { NavbarCanchero } from "../pages/Canchero/components/Navbar";
 import { NavbarUsuario } from "../pages/Usuario/components/Navbar";
 import { CancheroPerfil } from "../pages/Canchero/components/CancheroPerfil";
-import {HomeScreen} from "../pages/Home/HomeScreen";
 import { FormCanchero } from "../pages/Registro/FormCanchero";
 import { FormUsuario } from '../pages/Registro/FormUsuario';
-import { InfoRegistro } from '../pages/Registro/InfoRegistro';
 import { TableroCanchita } from '../pages/Canchero/Canchita/TableroCanchita';
+import { HomeScreen } from '../pages/home/HomeScreen';
 export const rutas=([
   {
     path:"/",
@@ -21,11 +20,6 @@ export const rutas=([
         path:"/",
         element:<HomeScreen />,
         name:"Home"
-      },
-      {
-        path:"/registro",
-        element:<InfoRegistro />,
-        name:"Registro"
       },
       {
         path:"/registroAd",

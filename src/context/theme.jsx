@@ -4,25 +4,26 @@ import { teal } from '@mui/material/colors';
 export const theme = createTheme({
     palette: {
       primary: {
-        main: green[500],
-        light: "skyblue"
+        main: '#295F4E',
       },
       secondary: {
-        main: '#f44336',
+        main: '#6DB193',
       },
-      otherColor:{main:teal[500] },
+      textColor:{main:'#323232'},
+      otherColor:{main:'#F4E5C2' },
       buttonColor:{main:teal[300] 
       },
       buttonColorHover:{main:teal[100] },
       iconNavbar:{main:"#fafafa"}
     },
+    typography:['Montserrat']
   });
 
 
 //NavBar
 export const stylesNavBar= {
   root: {
-    background: 'linear-gradient(45deg, #30c444 40%, #70bc1c 80%)',
+    background: 'linear-gradient(45deg, #295F4E 40%, #6DB193 80%)',
     color: 'white',
     padding: '0 30px',
     // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',

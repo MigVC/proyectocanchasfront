@@ -10,7 +10,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { stylesNavBar } from '../../../context/theme';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-const pages = ['Agregar'];
 const settings = ['perfil', '/'];
 const settingsLabel = ['Perfil', 'Salir'];
 const style = {
@@ -74,42 +73,7 @@ export const NavbarCanchero = () => {
             Canchero
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="iconNavbar"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          
           <Link  to="/canchero">
           <SportsSoccerIcon color='iconNavbar' sx={{ display: { width: 40, height: 40,xs: 'flex', md: 'none' }, mr: 1 }} />
           </Link>
@@ -134,20 +98,7 @@ export const NavbarCanchero = () => {
           >
             Canchero
           </Typography>
-          <Box sx={{  display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Tooltip key={page} title="Agregar canchita">
-              <IconButton
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{  color: 'white', display: 'block' }}
-              >
-                <AddBoxIcon sx={{width:40,height:40,color:'#f0f4c3'}} />
-              </IconButton>
-              </Tooltip>
-            ))}
-          </Box>
-
+          
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Configuraciones">
               <IconButton onClick={handleOpenUserMenu} sx={{ ml:2, }}>

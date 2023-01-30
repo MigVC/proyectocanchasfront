@@ -3,10 +3,12 @@ import { Box, Button, Fab, Grid, Stack, Zoom } from '@mui/material'
 import { CardCanchas } from '../../components/layout/CardCanchas';
 import { CardCanchitas } from './components/CardCanchitas';
 import { stylesNavBar } from '../../context/theme';
-import CanchitaNoche from '../../assets/images/CanchitaNoche.jpg'
+import FondoCanchero from '../../assets/images/FondoCanchero.jpg'
 import { Link } from 'react-router-dom';
+import { TextoCentrado } from '../../components/TextoCentrado'
 
 import { Agregar } from '../../components/Agregar';
+import { TextoPortada } from '../../components/TextoPortada';
 
 export const DashBoardCanchero = () => {
   const [spacing, setSpacing] = React.useState(2);
@@ -39,45 +41,34 @@ export const DashBoardCanchero = () => {
   ]
   return (
     <Box>
-      <Box sx={{ fontFamily:'Montserrat' }}>
-        
-        <Box sx={{p:8,fontFamily:'Montserrat',color:'white',backgroundRepeat:'no-repeat',backgroundPosition:'center', 
-        position:'relative',
-        backgroundImage:`url(${CanchitaNoche})`,
-        backgroundRepeat:'no-repeat',
-        backgroundPosition:'center', 
-        backgroundColor:'#212121',
-        // opacity:0.85,
-        backgroundSize:'cover',
-        display:'flex',
-        
-        }}>
+      <Box sx={{
+          position:'relative',
+          backgroundImage:`url(${FondoCanchero})`,
+          backgroundRepeat:'no-repeat',
+          backgroundPosition:'center', 
+          backgroundSize:'cover',
+          height:{xs:'30vh',md:'50vh'},
+          display:'flex',
+          justifyContent:'center'      
           
-          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            <Grid item xs={12} sx={{fontSize:33,fontWeight:660,}}>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                
-                <Grid item xs={12} >
-                  <div>¡Bienvenido Canchero! </div>
-                </Grid>
-                <Grid item xs={12}>
-                  <h6  >Aquí podrás ver todas las reservas de tus canchitas registradas </h6>
-                </Grid>
-                <Grid item xs={12}>
-                  <Link style={{textDecoration:'none'}}>
-                    <Button variant="contained" sx={{fontFamily:'Montserrat',fontWeight: 600,backgroundColor:'#52b202',color:'white','&:hover':{backgroundColor:'#33691e'}}} >
-                      ver Perfil
-                    </Button>
-                  </Link>
-                </Grid>
-            </Grid>
-            </Grid>
-          </Grid>
+        }}>
+        <Box alignContent='center' sx={{textAlign: 'center', p:{xs:1,md:5,sm:2},marginTop:{xs:3,md:2,sm:1}}}>
+        <div style={{justifyContent:'space-between'}}>
+          <TextoPortada 
+            titulo={'!Bienvenido Canchero!'}
+            contenido={'Aquí podras encontrar todas tus canchas y modificar tus horarios'}
+            button={'Ver perfil'}
+            page={'perfil'}
+            />
+          </div>
         </Box>
-        <Box sx={{p:4,fontFamily:'Montserrat'}}>
-          <Box sx={{textAlign:'center',fontSize:46,fontWeight:700,color:'#30c444'}}>
-            Canchitas
-          </Box>
+        
+        </Box>
+      <Box>
+        
+        
+        <Box >
+          <TextoCentrado encabezado={'Todas tus Canchitas'} contenido={'recuerda verificar tus horarios y cambiar el estado cuando hagan una reserva'}/>
           <Box sx={{p:6,fontFamily:'Montserrat'}} >
             <Grid container>
             <Grid item xs={12}>

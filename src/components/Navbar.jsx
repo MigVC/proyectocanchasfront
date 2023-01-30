@@ -33,14 +33,15 @@ const style = {
   };
 const drawerWidth = 240;
 const ColorButton = styled(Button)(({ theme }) => ({
-    color: theme.palette.getContrastText(green[600]),
+    color: theme.palette.getContrastText('#F4E5C2'),
     borderRadius:56,
     margin:'8px',
-    backgroundColor: green[500],
+    backgroundColor: '#6DB193',
+    color:'white',
     
     '&:hover': {
-      backgroundColor: green[800],
-    //   color:grey[900],
+      backgroundColor: '#295F4E',
+      
     
     },
   }));

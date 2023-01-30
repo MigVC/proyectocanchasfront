@@ -7,10 +7,11 @@ export const HomeScreen = () => {
   return (
     <div className='banner'>
 
-
-      <div className='py-5 px-lg-5 px-md-3 px-1'>
-        <div className='py-5 text-light text-center'>
-          <h1 className='p-5 letraTitle'> Encuentra una cancha al instante </h1>
+      <div className='header'>
+      <div className='col-md-6 offset-md-3'>
+        <div className='text-center'>
+          <h1  className='text-center  font-weight-bold '> CANCHITAS CUSCO</h1>
+          <h1 className='text-center text-light '> Encuentra una cancha al instante </h1>
           <p className="fs-5">
             Busca entre diferentes canchas, filtra por ubicación, tamaño, puntaje y escoge la que mejor se acomode a tu disponibilidad de tiempo.
           </p>
@@ -20,7 +21,7 @@ export const HomeScreen = () => {
           </Link>
         </div>
       </div>
-
+      </div>
       <div className='container'>
         <div className='row text-light text-center d-flex justify-content-center'>
           <div className='col-lg-5 col-sm-12 bg-light text-dark mx-3 my-1 p-4 rounded-3' data-aos="fade-up">
@@ -51,27 +52,27 @@ export const HomeScreen = () => {
           </div>
 
           <div className='col-12 mt-5'>
-            <h1 style={{"font-family": "copperplate"}}> ¿Qué nos caracteriza? </h1>
+            <h1 > ¿Qué nos caracteriza? </h1>
             <div className='container'>
               <div className='row'>
                 <div className='col-lg-6 col-sm-12 p-4'>
                   <ion-icon name="wifi-outline" data-aos="zoom-in"></ion-icon><br />
-                  <b style={{"font-family": "copperplate"}} className="fs-4">Reserva online</b><br/>
+                  <b className="fs-4">Reserva online</b><br/>
                   <span>Selecciona una cancha, escoge la hora y reserva al instante.</span>
                 </div>
                 <div className='col-lg-6 col-sm-12 p-4'>
                   <ion-icon name="search-circle-outline" data-aos="zoom-in"></ion-icon><br />
-                  <b style={{"font-family": "copperplate"}} className="fs-4">Busca entre cientos de canchas</b><br/>
+                  <b className="fs-4">Busca entre cientos de canchas</b><br/>
                   <span> Encuentra tu cancha favorita y que mejor se adapte a lo que estas buscando. </span>
                 </div>
                 <div className='col-lg-6 col-sm-12 p-4'>
                 <ion-icon name="star-half-outline" data-aos="zoom-in"></ion-icon><br />
-                  <b style={{"font-family": "copperplate"}} className="fs-4">Escoge entre las canchas mejor puntuadas</b><br/>
+                  <b className="fs-4">Escoge entre las canchas mejor puntuadas</b><br/>
                   <span> Puedes calificar las canchas y filtrar entre las mejores. </span>
                 </div>
                 <div className='col-lg-6 col-sm-12 p-4'>
                 <ion-icon name="clipboard-outline" data-aos="zoom-in"></ion-icon><br />
-                  <b style={{"font-family": "copperplate"}} className="fs-4"> Organiza tus horarios</b><br/>
+                  <b  className="fs-4"> Organiza tus horarios</b><br/>
                   <span> Accde a premium y obten funcionalidades únicas. </span>
                 </div>
               </div>

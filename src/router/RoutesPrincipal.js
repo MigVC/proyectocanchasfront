@@ -9,7 +9,7 @@ import { CancheroPerfil } from "../pages/Canchero/components/CancheroPerfil";
 import { FormCanchero } from "../pages/Registro/FormCanchero";
 import { FormUsuario } from '../pages/Registro/FormUsuario';
 import { TableroCanchita } from '../pages/Canchero/Canchita/TableroCanchita';
-import { HomeScreen } from '../pages/home/HomeScreen';
+import { HomeScreen } from '../pages/Home/HomeScreen';
 export const rutas=([
   {
     path:"/",

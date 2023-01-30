@@ -59,7 +59,7 @@ export const LoginCanchero = () => {
         <div className={{ width: '100%', height: '100vh' }}>
             <div style={styles.content}  >
                 <Avatar alt="Remy Sharp" sx={{
-                m: 2, width: 150, height: 150, border: '5px solid white', bgcolor: 'green',
+                m: 2, width: 150, height: 150, border: '5px solid white', bgcolor: '#295F4E',
                 p: 2,
                 position: 'relative',
                 bottom:50,
@@ -147,8 +147,8 @@ export const LoginCanchero = () => {
                                     variant="contained"
                                     onClick={() => handleSubmit(Usuario, Contraseña)}
                                     sx={{
-                                        mt: 2, mb: 2, borderRadius: 5, backgroundColor: 'green', '&:hover': {
-                                            backgroundColor: '#124116'
+                                        mt: 2, mb: 2, borderRadius: 5, backgroundColor: '#295F4E', '&:hover': {
+                                            backgroundColor: '#F4E5C2',color:'#295F4E'
                                         },
                                     }}
                                     color="warning"

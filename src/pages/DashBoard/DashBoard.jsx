@@ -4,7 +4,7 @@ import { SearchBar } from '../../components/SearchBar'
 import { Feed } from '../../components/Feed'
 import Chimpunes from '../../assets/images/Chimpunes.jpg'
 import { TextoCentrado } from '../../components/TextoCentrado'
-import { PieHome } from '../Home/PieHome'
+
 export const DashBoard = () => {
   return (
     <div className='background'>

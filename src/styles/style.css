@@ -5,9 +5,8 @@
     --letra: #ffffff;
   }
 
-
 .colorPrim {
-    background: var(--secondary);
+    background: var(--prim);
 }
 
 .banner {
@@ -30,4 +29,15 @@ ion-icon {
     background-size:cover;
     height: 100vh;
     
+}
+
+.pelota {
+    font-size: 4.5rem;
+    color: var(--primary);
+}
+
+.frase {
+    
+    color: var(--primary);
+    font-weight: bold;
 }

@@ -6,10 +6,11 @@ import { DashBoardUsuario } from '../pages/Usuario'
 import { NavbarCanchero } from "../pages/Canchero/components/Navbar";
 import { NavbarUsuario } from "../pages/Usuario/components/Navbar";
 import { CancheroPerfil } from "../pages/Canchero/components/CancheroPerfil";
-import { FormCanchero } from "../pages/Registro/FormCanchero";
-import { FormUsuario } from '../pages/Registro/FormUsuario';
+
 import { TableroCanchita } from '../pages/Canchero/Canchita/TableroCanchita';
-import { HomeScreen } from '../pages/Home/HomeScreen';
+import {HomeScreen} from '../pages/home/HomeScreen'
+import { InfoRegistro } from '../pages/Registro/InfoRegistro';
+
 export const rutas=([
   {
     path:"/",
@@ -18,19 +19,16 @@ export const rutas=([
     children:[
       {
         path:"/",
-        element:<HomeScreen />,
+        element: <HomeScreen />,
         name:"Home"
       },
       {
-        path:"/registroAd",
-        element:<FormCanchero />,
-        name:"RegistrarCanchero"
+        path:"/register",
+        element:<InfoRegistro />,
+        name:"RegisterUser"
       },
-      {
-        path:"/registroDep",
-        element:<FormUsuario />,
-        name:"RegistrarUsuario"
-      },
+
+
       {
         path:"/canchitas",
         element:<DashBoard/>,

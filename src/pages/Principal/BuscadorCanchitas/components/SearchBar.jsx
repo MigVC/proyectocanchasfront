@@ -1,5 +1,5 @@
-import { TextField } from '@mui/material'
-import React from 'react'
+import { TextField } from '@mui/material';
+import React from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -15,51 +15,76 @@ import DirectionsIcon from '@mui/icons-material/Directions';
 
 export const SearchBar = () => {
   const [value, setValue] = React.useState(dayjs().toDate());
-  const [timePickerValue, setTimePickerValue] = React.useState(dayjs('2022-04-07'));
+  const [timePickerValue, setTimePickerValue] = React.useState(
+    dayjs('2022-04-07')
+  );
 
   return (
-    <div >
-    <Paper
-      component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center',borderRadius:50 ,maxWidth:1600 ,}}
+    <div>
+      <Paper
+        component='form'
+        sx={{
+          p: '2px 4px',
+          display: 'flex',
+          alignItems: 'center',
+          borderRadius: 50,
+          maxWidth: 1600,
+        }}
       >
-      <IconButton sx={{ p: '10px' }} aria-label="menu">
-        <MenuIcon />
-      </IconButton>
-      <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Search Google Maps"
-        inputProps={{ 'aria-label': 'search google maps' }}
-      />
-      <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-        <SearchIcon />
-      </IconButton>
-      <Divider sx={{  m: 0.5 }} orientation="vertical" />
-      <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
-        <DirectionsIcon />
-      </IconButton>
-      <Divider sx={{  m: 0.5 }} orientation="vertical" />
-      <LocalizationProvider  dateAdapter={AdapterDayjs}>
-        <DesktopDatePicker
-          InputProps={{sx:{borderRadius:50,height:40,color:'grey','& .MuiSvgIcon-root':{}}}}
-          value={value}
-          minDate={dayjs('2017-01-01')}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
-          renderInput={(params) => <TextField {...params} />}
+        <IconButton sx={{ p: '10px' }} aria-label='menu'>
+          <MenuIcon />
+        </IconButton>
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder='Search Google Maps'
+          inputProps={{ 'aria-label': 'search google maps' }}
         />
-        <Divider sx={{ color:'black', height: 28, m: 0.5 }} orientation="vertical" />
+        <IconButton type='button' sx={{ p: '10px' }} aria-label='search'>
+          <SearchIcon />
+        </IconButton>
+        <Divider sx={{ m: 0.5 }} orientation='vertical' />
+        <IconButton color='primary' sx={{ p: '10px' }} aria-label='directions'>
+          <DirectionsIcon />
+        </IconButton>
+        <Divider sx={{ m: 0.5 }} orientation='vertical' />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DesktopDatePicker
+            InputProps={{
+              sx: {
+                borderRadius: 50,
+                height: 40,
+                color: 'grey',
+                '& .MuiSvgIcon-root': {},
+              },
+            }}
+            value={value}
+            minDate={dayjs('2017-01-01')}
+            onChange={(newValue) => {
+              setValue(newValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+          <Divider
+            sx={{ color: 'black', height: 28, m: 0.5 }}
+            orientation='vertical'
+          />
           <TimePicker
-            InputProps={{sx:{borderRadius:50,height:40,color:'grey','& .MuiSvgIcon-root':{}}}}
+            InputProps={{
+              sx: {
+                borderRadius: 50,
+                height: 40,
+                color: 'grey',
+                '& .MuiSvgIcon-root': {},
+              },
+            }}
             value={timePickerValue}
             minTime={dayjs().hour('20:00')}
             maxTime={dayjs().hour('21:00')}
             onChange={(newValue) => setTimePickerValue(newValue)}
-            renderInput={(params) => <TextField  {...params} />}
+            renderInput={(params) => <TextField {...params} />}
           />
-      </LocalizationProvider>
-    </Paper>
+        </LocalizationProvider>
+      </Paper>
     </div>
-  )
-}
+  );
+};

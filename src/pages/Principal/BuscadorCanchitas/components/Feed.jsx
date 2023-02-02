@@ -1,36 +1,39 @@
-import { Box, Grid } from '@mui/material'
-import React from 'react'
-import { CardCanchas } from '../../../../components/layouts/CardCanchas'
-
+import { Box, Grid } from '@mui/material';
+import React from 'react';
+import { CardCanchas } from '../../../../components/layouts/CardCanchas';
+import { canchasMock } from '../../../../data/mockCanchas/chanchas';
+import { useCanchaSearch } from '../../../../hooks/useCanchaSearch';
 
 export const Feed = () => {
-  
+  const { isFetching, simpleCanchaList } = useCanchaSearch();
+
   return (
-    <Box flex={3} sx={{marginX:{md:4,xs:3}}}>
-      <Grid sx={{ flexGrow: 1 }} container >
-      <Grid item xs={12}>
-        <Grid container justifyContent="center" spacing={3}>
-          {[0, 1, 2,3,4,5,6].map((value) => (
-            <Grid key={value} item>
-              <CardCanchas
-                image={'https://donpotrero.com/img/posts/2/medidas_lg.jpg'}
-                titulo={'Balón de Oro'}
-                precio={50}
-                ubicacion={'Whanchaq 213 Av Tupac'}
-                avatar={"https://imgmedia.elpopular.pe/640x345/elpopular/original/2022/10/16/634c017d3b29104a0834810c.webp"}
-                nombreCanchero={'Victor Martinez'}
-                star={3}
-                person={"Canchero"}
-                descripcion={'La canchita esta en perfectas condiciones Contamos con baños limpios Tienda y Barra Alquilamos polos, pelotas'}
-                button={"Ver"}
-                link={'/canchero/canchita/'}
-                id={value}
-              />
-            </Grid>
-          ))}
+    <Box flex={3} sx={{ marginX: { md: 4, xs: 3 } }}>
+      <Grid sx={{ flexGrow: 1 }} container>
+        <Grid item xs={12}>
+          <Grid container justifyContent='center' spacing={3}>
+            {canchasMock.map((value, index) => (
+              <Grid key={index} item>
+                <CardCanchas
+                  image={value.image}
+                  nombre={value.nombre}
+                  description={value.description}
+                  ubicacion={value.ubicacion}
+                  estado={value.estado}
+                  owner={value.owner}
+                  calificacion={value.calificacion}
+                  isValid={value.isValid}
+                  precioHora={value.precioHora}
+                  person={'Canchero'}
+                  button={'Ver'}
+                  link={'/canchero/canchita/'}
+                  id={index}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-      </Grid>
     </Box>
-  )
-}
+  );
+};

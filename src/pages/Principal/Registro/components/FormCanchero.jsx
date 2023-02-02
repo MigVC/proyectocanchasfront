@@ -1,5 +1,8 @@
 import React from 'react'
-import { Formik } from 'formik'
+import { Field, Formik } from 'formik'
+import { createCancheroRequest } from '../../../../api/apiRequest'
+import swal from "sweetalert"
+
 export const FormCanchero = () => {
     return (
 
@@ -14,15 +17,38 @@ export const FormCanchero = () => {
                     sexoM: false,
                     sexoF: false,
                     sexoO: false,
+                    sexo: "M",
                     telefono: "",
-                    avatar: "",
+                    avatar: "https://previews.123rf.com/images/sirup/sirup1608/sirup160800050/61971886-avatar-abstracto-del-vector-de-cabeza-humana-con-vista-de-perfil-y-bal%C3%B3n-de-f%C3%BAtbol-en-el-medio-sobre.jpg",
                     correo: "",
                     password: "",
-                    passwordConfirmation: ""
+                    passwordConfirmation: "",
+                    "nombre": "",
+                    "description": "",
+                    "ubicacion": "",
+                    "estado": "opened",
+                    "cantAparcamiento": 0
                 }}
 
                 onSubmit={async (values, actions) => {
-                    
+                    values.sexo = values.sexoM? "M":values.sexoF?"F":"otro"
+                    console.log(values)
+                    try {
+                        await createCancheroRequest(values)
+                        swal({
+                            title: "Cancha registrada",
+                            icon: "success",
+                            buttons: "OK"
+                        })
+                        actions.resetForm()
+                    } catch (error) {
+                        swal({
+                            title: "Error",
+                            icon: "error",
+                            text: "Todos los campos son obligatorios",
+                            buttons: "OK"
+                        })
+                    }
                 }}
             >
                 {
@@ -58,7 +84,7 @@ export const FormCanchero = () => {
                                 <div className='my-2 col-lg-7 col-sm-12' >
                                     <label className='fw-bold fs-6' style={{ "fontFamily": "cambria" }}> Apellidos </label>
                                     <input
-                                        name="nombres"
+                                        name="apellidos"
                                         value={values.apellidos}
                                         onChange={handleChange}
                                         type="text"
@@ -69,7 +95,7 @@ export const FormCanchero = () => {
 
                                 <div className='my-2 col-lg-5 col-sm-12'>
                                     <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Fecha de nacimiento </label>
-                                    <input className='form-control border border-dark' type="date" onChange={handleChange} id="fechaInicio" name="fechaInicio" value={values.nacimiento} />
+                                    <input className='form-control border border-dark' type="date" onChange={handleChange} id="nacimineto" name="nacimiento" value={values.nacimiento} />
                                 </div>
 
                             </div>
@@ -79,13 +105,13 @@ export const FormCanchero = () => {
                                 <div className='my-2 col-lg-6 col-sm-6'>
                                     <label className='fw-bold text-center' style={{ "fontFamily": "cambria" }}> Sexo </label>
                                     <div className='d-flex align-items-center btn-group d-flex justify-content-center' role="group">
-                                        <input onChange={handleChange} name="sexo" className="btn-check" id="sexoM" type="radio" />
+                                        <input onChange={handleChange} name="sexoM" className="btn-check" id="sexoM" type="radio" />
                                         <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoM" >Masculino</label>
 
-                                        <input onChange={handleChange} name="sexo" className="btn-check" id="sexoF" type="radio" />
+                                        <input onChange={handleChange} name="sexoF" className="btn-check" id="sexoF" type="radio" />
                                         <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoF">Femenino</label>
 
-                                        <input onChange={handleChange} name="sexo" className="btn-check" id="sexoO" type="radio" />
+                                        <input onChange={handleChange} name="sexoO" className="btn-check" id="sexoO" type="radio" />
                                         <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoO">Otro</label>
                                     </div>
                                 </div>
@@ -104,20 +130,20 @@ export const FormCanchero = () => {
                             </div>
 
                             <div className='row'>
-                                <div className='col-lg-5 col-sm-6 my-2'>
-                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Avatar </label>
+                                <div className='col-lg-6 col-sm-6 my-2'>
+                                    <label className='fw-bold fs-6' style={{ "fontFamily": "cambria" }}> Nombre de la cancha </label>
                                     <input
-                                        onChange={(event) => {
-                                            setFieldValue("avatar", event.target.files[0])
-                                        }}
-                                        className='form-control border border-dark'
-                                        type="file"
-                                        accept='.png'
+                                        name="nombre"
+                                        value={values.nombre}
+                                        onChange={handleChange}
+                                        type="text"
+                                        placeholder='Ingresa nombre de la cancha'
+                                        className='form-control border border-dark '
                                     />
                                 </div>
 
-                                <div className='col-lg-7 col-sm-6 my-2'>
-                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Correo </label>
+                                <div className='col-lg-6 col-sm-6 my-2'>
+                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Correo electrónico </label>
                                     <input
                                         name="correo"
                                         onChange={handleChange}
@@ -130,7 +156,29 @@ export const FormCanchero = () => {
                             </div>
 
                             <div className='row'>
-                                <div className='col-lg-6 col-sm-12 my-2'>
+                                <div className='col-lg-5 col-sm-6 my-2'>
+                                    <label className='fw-bold'> Descripción de la cancha </label>
+
+                                    <Field as="textarea" name="description" className="form-select border border-dark" onChange={handleChange} value={values.description}>
+
+                                    </Field>
+                                </div>
+
+                                <div className='col-lg-7 col-sm-6 my-2'>
+                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Ubicación </label>
+                                    <input
+                                        name="ubicacion"
+                                        onChange={handleChange}
+                                        type="text"
+                                        className='form-control border border-dark'
+                                        placeholder='Ingresa tu correo electrónico'
+                                        value={values.ubicacion}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='row'>
+                                <div className='col-lg-4 col-sm-12 my-2'>
                                     <label className='fw-bold' style={{ "fontFamily": "cambria" }}> password </label>
                                     <input
                                         name="password"
@@ -142,7 +190,7 @@ export const FormCanchero = () => {
                                     />
                                 </div>
 
-                                <div className='col-lg-6 col-sm-12 my-2'>
+                                <div className='col-lg-4 col-sm-12 my-2'>
                                     <label className='fw-bold' style={{ "fontFamily": "cambria" }}>Confirmar password </label>
                                     <input
                                         name="passwordConfirmation"
@@ -151,6 +199,17 @@ export const FormCanchero = () => {
                                         className='form-control border border-dark'
                                         placeholder='Confirma tu password'
                                         value={values.passwordConfirmation}
+                                    />
+                                </div>
+                                <div className='col-lg-4 col-sm-12 my-2'>
+                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}>Espacios para vehiculos </label>
+                                    <input
+                                        name="cantAparcamiento"
+                                        onChange={handleChange}
+                                        type="number"
+                                        className='form-control border border-dark'
+                                        placeholder='Nro de lugares de estacionamiento'
+                                        value={values.cantAparcamiento}
                                     />
                                 </div>
                             </div>

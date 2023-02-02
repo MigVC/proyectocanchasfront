@@ -1,15 +1,12 @@
-
-import { Navbar } from '../components/Navbar'
-import { DashBoard } from '../pages/DashBoard/DashBoard'
+import { Navbar } from '../components/layouts/Navbar'
+import { DashBoard } from '../pages/Principal/BuscadorCanchitas'
 import { DashBoardCanchero } from '../pages/Canchero'
-import { DashBoardUsuario } from '../pages/Usuario'
-import { NavbarCanchero } from "../pages/Canchero/components/Navbar";
-import { NavbarUsuario } from "../pages/Usuario/components/Navbar";
-import { CancheroPerfil } from "../pages/Canchero/components/CancheroPerfil";
+import { NavbarCanchero } from "../components/layouts/NavbarCanchero";
+import { CancheroPerfil } from "../pages/Canchero/Perfil";
+import { TableroCanchita } from '../pages/Canchero/AdminCanchitas';
+import {HomeScreen} from '../pages/Principal/inicio'
+import { InfoRegistro } from '../pages/Principal/Registro';
 
-import { TableroCanchita } from '../pages/Canchero/Canchita/TableroCanchita';
-import {HomeScreen} from '../pages/home/HomeScreen'
-import { InfoRegistro } from '../pages/Registro/InfoRegistro';
 
 export const rutas=([
   {
@@ -23,12 +20,10 @@ export const rutas=([
         name:"Home"
       },
       {
-        path:"/register",
+        path:"/registro",
         element:<InfoRegistro />,
         name:"RegisterUser"
       },
-
-
       {
         path:"/canchitas",
         element:<DashBoard/>,
@@ -67,17 +62,5 @@ export const rutas=([
       
     ]
   },
-  {
-    path:"/usuario",
-    element:<NavbarUsuario/>,
-    name:"Usuario",
-    children:[
-      {
-        path:"/usuario",
-        element:<DashBoardUsuario/>,
-        name:"HomeUsuario"
-      },
-      
-    ]
-  },
+  
 ])

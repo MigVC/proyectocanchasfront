@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router'
 import Box from '@mui/material/Box';
 import {  Grid, Paper,TextField, Typography } from '@mui/material';
@@ -214,17 +214,20 @@ const columns = [
   },
   {
       field: 'editar',
-      width: 400,
+      width: 250,
       type: 'actions',
       headerName: 'Editar',
-      actions:[TableActionsCanchero,tableActionsUsuario]      
+      actions:[TableActionsCanchero]      
   }
 ]
 
 export const TableroCanchita = () => {
     const params= useParams();
     const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
-
+  const [hour, setHour] = useState(new Date())
+  
+  
+  console.log(hour)
   const handleChange = (newValue) => {
     setValue(newValue);
   };

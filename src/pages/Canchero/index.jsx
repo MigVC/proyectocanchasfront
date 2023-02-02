@@ -6,6 +6,7 @@ import { TextoCentrado } from '../../components/common/TextoCentrado'
 import { ButtonAgregar } from '../../components/common/ButtonAgregar';
 import { TextoPortada } from '../../components/common/TextoPortada';
 import { headerStyle } from '../../theme/style';
+import { canchasMock } from '../../data/canchasMock';
 
 export const DashBoardCanchero = () => {
   const Datacanchitas=[
@@ -59,21 +60,22 @@ export const DashBoardCanchero = () => {
             <Grid sx={{ flexGrow: 1 }} container>
             <Grid item xs={12}>
               <Grid container justifyContent="center" spacing={3}>
-                {Datacanchitas.map((value) => (
+                {canchasMock.map((value, index) => (
                   <Grid key={value.id} item>
-                    <CardCanchas 
-                    image={value.image}
-                    titulo={value.name}
-                    precio={50}
-                    ubicacion={'Whanchaq 213 Av Tupac'}
-                    avatar={value.image}
-                    nombreCanchero={'Victor Martinez'}
-                    star={3}
-                    descripcion={'La canchita esta en perfectas condiciones Contamos con baños limpios Tienda y Barra Alquilamos polos, pelotas'}
-                    button={"Ver"}
-                    link={'/canchero/canchita/'}
-                      id={value.name} 
-                    />
+                    <CardCanchas
+                  image={value.image}
+                  nombre={value.nombre}
+                  description={value.description}
+                  ubicacion={value.ubicacion}
+                  estado={value.estado}
+                  owner={value.owner}
+                  calificacion={value.calificacion}
+                  isValid={value.isValid}
+                  precioHora={value.precioHora}
+                  button={'Ver'}
+                  link={'/canchero/canchita/'}
+                  id={index}
+                />
                   </Grid>
                 ))}
               </Grid>

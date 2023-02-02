@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react';
-import { canchaApi } from '../api/canchaApi';
+import { publicRequest } from '../api/apiRequest';
 
 export const useCanchaSearch = () => {
   const [isFetching, setIsFetching] = useState(true);
-  const [simpleCanchaList, setSimpleCanchaList] = useState([]);
+  const [canchaList, setCanchaList] = useState([]);
 
   const loadCanchas = async () => {
     try {
-      const resp = await canchaApi.get(process.env.PATH_URL);
-      setSimpleCanchaList(resp.data);
+      const resp = await publicRequest.get('/api/cancha/all');
+      setCanchaList(resp.data);
       setIsFetching(false);
     } catch (error) {
       console.log(error.message);
     }
   };
 
+  console.log({ canchaList });
+
   useEffect(() => {
     loadCanchas();
   }, []);
 
-  console.log({ simpleCanchaList });
-
   return {
     isFetching,
-    simpleCanchaList,
+    canchaList,
   };
 };

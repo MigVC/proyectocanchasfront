@@ -39,7 +39,7 @@ const registroCanchitaSchema= yup.object({
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-export const Agregar = ({setOpen}) => {
+export const Agregar = ({setOpen, closeModal}) => {
     const [openAlert, setOpenAlert] = useState(false)
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -182,7 +182,7 @@ export const Agregar = ({setOpen}) => {
                 </Grid>
 
                 <Grid item xs={6}>
-                    <Button type='submit' variant='contained' fullWidth>
+                    <Button type='submit' variant='contained' fullWidth onClick={()=>closeModal(false)}>
                     Guardar
                     </Button>
                 </Grid>

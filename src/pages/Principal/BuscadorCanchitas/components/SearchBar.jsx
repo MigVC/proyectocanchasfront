@@ -13,7 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
 
-export const SearchBar = () => {
+export const SearchBar = ({ searcher }) => {
   const [value, setValue] = React.useState(dayjs().toDate());
   const [timePickerValue, setTimePickerValue] = React.useState(
     dayjs('2022-04-07')
@@ -38,6 +38,7 @@ export const SearchBar = () => {
           sx={{ ml: 1, flex: 1 }}
           placeholder='Search Google Maps'
           inputProps={{ 'aria-label': 'search google maps' }}
+          onChange={(e) => searcher(e.target.value)}
         />
         <IconButton type='button' sx={{ p: '10px' }} aria-label='search'>
           <SearchIcon />

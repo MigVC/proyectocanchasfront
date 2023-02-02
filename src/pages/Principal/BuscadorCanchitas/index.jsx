@@ -1,12 +1,49 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchBar } from './components/SearchBar';
 import { Feed } from './components/Feed';
 import Chimpunes from '../../../assets/images/Chimpunes.jpg';
 import { TextoCentrado } from '../../../components/common/TextoCentrado';
 import { headerStyle } from '../../../theme/style';
+import { useCanchaSearch } from '../../../hooks/useCanchaSearch';
 
 export const DashBoard = () => {
+  const { isFetching, canchaList } = useCanchaSearch();
+  const [canchaFiltered, setCanchaFiltered] = useState([]);
+  const [term, setTerm] = useState('');
+
+  useEffect(() => {
+    if (term.length === 0) {
+      return setCanchaFiltered([]);
+    }
+    console.log(isNaN(Number(term)));
+    setCanchaFiltered(
+      canchaList.filter(
+        (cancha) =>
+          cancha.nombre.toLocaleLowerCase().includes(term.toLocaleLowerCase()) |
+          cancha.description
+            .toLocaleLowerCase()
+            .includes(term.toLocaleLowerCase()) |
+          cancha.ubicacion
+            .toLocaleLowerCase()
+            .includes(term.toLocaleLowerCase()) |
+          cancha.description
+            .toLocaleLowerCase()
+            .includes(term.toLocaleLowerCase()) |
+          cancha.description
+            .toLocaleLowerCase()
+            .includes(term.toLocaleLowerCase()) |
+          cancha.precioHora.toString()
+            .toLocaleLowerCase()
+            .includes(term.toLocaleLowerCase()) |
+          cancha.cantAparcamiento.toString()
+            .toLocaleLowerCase()
+            .includes(term.toLocaleLowerCase())
+      )
+    );
+  }, [term]);
+
+  console.log({ term });
   return (
     <div className='background'>
       <Box>
@@ -25,7 +62,7 @@ export const DashBoard = () => {
             }}
           >
             <div style={{ justifyContent: 'space-between' }}>
-              <SearchBar />
+              <SearchBar searcher={(text) => setTerm(text)} />
             </div>
           </Box>
         </Box>
@@ -37,7 +74,7 @@ export const DashBoard = () => {
               'aquí tenemos solo calidad, recuerde verificar la ubicación y hora de la canchita que desea alquilar'
             }
           />
-          <Feed />
+          <Feed canchaList={term.length === 0 ? canchaList : canchaFiltered} />
         </Box>
       </Box>
     </div>

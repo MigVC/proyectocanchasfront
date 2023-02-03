@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { TableroHorarioDia } from './TableroHorarioDia';
+import dayjs from 'dayjs';
+import { HorarioContext } from '../../../../context/HorarioContext';
 
 
 function TabPanel(props) {
@@ -29,26 +31,33 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export const TableroDias = ({rows,columns}) => {
-  const [value, setValue] = React.useState(1);
-  
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+export const TableroDias = ({rows,setDia,dia,columns}) => {
+  const { setHorario, fecha } = useContext(HorarioContext);
+  const Fecha=new Date(fecha)
+    const handleChange = (event, newValue) => {
+    if(newValue<dia){
+      const losdias=dia-newValue
+      setHorario(new Date(Fecha.setDate(Fecha.getDate()-losdias)))
+    }
+    else{
+      const losdias=newValue-dia
+      setHorario(new Date(Fecha.setDate(Fecha.getDate()+losdias)))
+    }
+    setDia(newValue);
+    
+    
   };
   
   return (
     <>
     <Box
-      
       sx={{ maxWidth: { xs: 500, sm: 750 },bgcolor: 'background.paper',}}
     >
-      
       <Tabs
         orientation='horizontal'
         variant="scrollable"
         scrollButtons="auto"
-        value={value}
-        
+        value={(new Date(fecha).getDay()-1)===-1? 6: (new Date(fecha).getDay()-1)}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{ borderColor: 'divider' }}
@@ -58,16 +67,11 @@ export const TableroDias = ({rows,columns}) => {
          <Tab key={value.id} label={value.id}  /> 
         ))
       }
-        
       </Tabs>
-      
       {
-        rows.map((row,index)=>(<TabPanel columns={columns} row={row} key={row.id} value={value} index={index}/>))
+        rows.map((row,index)=>(<TabPanel columns={columns} row={row} key={row.id} value={dia} index={index}/>))
       }
-      
-      
     </Box>
-    
     </>
   )
 }

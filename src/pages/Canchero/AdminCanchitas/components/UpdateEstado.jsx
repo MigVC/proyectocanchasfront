@@ -1,119 +1,129 @@
-import { Button, IconButton, Modal } from '@mui/material'
-import React, { useState } from 'react'
+import { Button, DialogActions, Grid, IconButton, InputAdornment, Modal, Typography } from '@mui/material'
+import React, { useContext, useState } from 'react'
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import SaveIcon from '@mui/icons-material/Save';
 import { Box } from '@mui/system';
 import {
-  DialogContent,
-  DialogContentText,
   TextField
 } from '@mui/material'
+import { style } from '../../../../theme/style';
+import { useForm } from 'react-hook-form';
+import { HorarioContext } from '../../../../context/HorarioContext';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  alignItems:'center',
-  width: 450,
-  height: 450,
-  borderRadius: 8,
-  flexDirection: 'column',
-  backgroundColor: 'white',
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-};
-const styles = {
-  content: {
-      position: 'absolute',
-      width: '100%',
-      height: '90%',
-      top: 20,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: 'calc(10px + 2vmin)',
-      zIndex: 'tooltip'
-  }
-
-};
 const stados = [
   {
-    value: 'disponible',
+    value: 'Disponible',
     label: 'Disponible',
   },
   {
-    value: 'deshabilitado',
+    value: 'Deshabilitado',
     label: 'Deshabilitado',
   },
   {
-    value: 'reservado',
+    value: 'Reservado',
     label: 'Reservado',
   },
 
 ];
-
-export const TableActionsCanchero = (props) => {
-  const {status}=props
-    console.log(props)
-    console.log('Estoy Aqui')
+export const TableActionsCanchero = ({props,status}) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-  
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({})
+    const { setHorario, fecha } = useContext(HorarioContext);
+    const Fecha=new Date(fecha)
+    Fecha.setHours(props)
+    const onSubmit = (data) => {
+      const formData = {
+          start: new Date(Fecha),
+          end: new Date(Fecha.setHours(props+1)),
+          state: data.status ,
+      }
+      console.log(formData)
+      setOpen(false)
+      
+      
+    }
+ 
   return (
     <>
     <IconButton onClick={handleOpen} >
         <ChangeCircleIcon  />
     </IconButton>
-    <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description"
+    <Modal open={open} onClose={handleClose}
     >
-        <Box sx={style}>
-        <form  style={styles.content}>
-          <DialogContent sx={{alingItems:'center'}}>
-            <DialogContentText sx={{ fontSize:33,marginBottom: '-1em' }}>
-              Estado de la Canchita
-            </DialogContentText>
-          </DialogContent>
-          <DialogContent sx={{alingItems:'center'}}>
-            <DialogContentText sx={{alingItems:'center', fontSize:20,marginBottom: '1em' }}>
-            Cambiar estado
-            </DialogContentText>
-            <DialogContentText sx={{alingItems:'center', fontSize:20,marginTop: '3rem' }}>
-            <TextField
-              select
-              defaultValue={status}
-              SelectProps={{
-                native: true,
-              }}
-              helperText="Please select your currency"
-            >
-              {stados.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </TextField>
-            </DialogContentText>
-          </DialogContent>
-          {/* <DialogActions sx={{}}>
-            <Button variant='contained' color='error' 
-            startIcon={
-            <CancelRoundedIcon />} 
-            onClick={handleClose}>
-              CANCELAR
-            </Button>
-            <Button
-              type='submit'
-              loadingPosition='start'
-              startIcon={<SaveIcon />}
-              variant='contained'
-            >
-              GUARDAR
-            </Button>
-          </DialogActions> */}
+      
+      <div style={style.modal}>
+      <div style={style.content}>
+        <Typography style={{...style.typography,marginBottom:25,fontWeight:600,fontSize:26,color:style.color.letraDark}}>
+          Estado de la Canchita
+        </Typography>
+        <Typography style={{...style.typography,marginBottom:12,fontWeight:600,color:style.color.letraDark}}>
+          Hora
+        </Typography>
+        <Typography style={{...style.typography,fontWeight:300,color:style.color.letraDark}}>
+          {Fecha.getHours()}:00 -{Fecha.getHours()+1}:00
+        </Typography>
+        <Button  
+          
+          style={{borderRadius:40,
+            marginBottom:30,
+            marginTop:10,
+            height:40,color:'white',
+            width:150,background:status==='Deshabilitado'?"#f50057":status==='Reservado'?"#0276aa":"#00e676"}}
+        >
+          {status}
+        </Button>
+        <Typography style={{...style.typography,fontWeight:600,color:style.color.letraDark}}>
+          Cambiar estado
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid container  spacing={1} p={2}>
+                <Grid item style={style.content} xs={12}>
+                <Grid item xs={12}>
+                  <TextField
+                    select
+                    fullWidth
+                    defaultValue={status}
+                    SelectProps={{
+                      native: true,
+                    }}
+                    {...register('status')}
+                    helperText="Selecciona el estado del horario"
+                  >
+                    {stados.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </TextField>
+                </Grid>
+                <Grid container marginTop spacing={2}>
+                  <Grid item xs={6}>
+                      <Button variant='contained' fullWidth color='error' onClick={e=>reset()}>
+                      Cancelar
+                      </Button>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Button
+                      fullWidth
+                      type='submit'
+                      startIcon={<SaveIcon />}
+                      variant='contained'
+                      // onClick={e=>e.preventDefault(console.log(props))}
+                    >
+                      GUARDAR
+                    </Button>
+                  </Grid>
+                </Grid>
+                </Grid>
+                
+                
+            </Grid>
         </form>
-        </Box>
+      </div>
+      </div>
     </Modal>
     </>
   )

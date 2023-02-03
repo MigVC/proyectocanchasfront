@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router'
 import Box from '@mui/material/Box';
 import {  Grid, Paper,TextField, Typography } from '@mui/material';
@@ -13,9 +13,10 @@ import dayjs from 'dayjs';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker, DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { headerStyle, style } from '../../../theme/style';
 import {TextoCentrado} from '../../../components/common/TextoCentrado'
+import { HorarioContext } from '../../../context/HorarioContext';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -222,12 +223,11 @@ const columns = [
 ]
 
 export const TableroCanchita = () => {
-    const params= useParams();
-    const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
+  const params= useParams();
+  const [value, setValue] = React.useState(new Date());
   const [hour, setHour] = useState(new Date())
-  
-  
-  console.log(hour)
+  const { setHorario, fecha } = useContext(HorarioContext);
+  const [dia, setDia] = React.useState((new Date(fecha).getDay()-1)===-1? 6: (new Date(fecha).getDay()-1));
   const handleChange = (newValue) => {
     setValue(newValue);
   };
@@ -246,7 +246,6 @@ export const TableroCanchita = () => {
           </div>
         </Box>
       </Box>
-
       <Box>
         <TextoCentrado
         encabezado={''}
@@ -276,7 +275,6 @@ export const TableroCanchita = () => {
                   Actualiza la pagina si ya pasó la hora
               </Typography>
               </Grid>
-            
             </Grid>
             <Grid item xs={4}>
               <Grid item xs={12}>
@@ -287,71 +285,53 @@ export const TableroCanchita = () => {
                   Selecciona la Fecha que deseas
               </Typography>
               </Grid>
-            
             </Grid>
-            
           </Grid>
-          
         </Box>
         <Box sx={{ p:4,textAlign: 'center',backgroundImage:`url(${FondoHorario})`,marginTop:4}}>
           <Grid container justifyItems='center' alignContent='center' justifyContent='center' textAlign='center'>
-          
-          <Paper
-      component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center',borderRadius:50 ,maxWidth:1600 ,}}
-      >
-      
-      
-      <LocalizationProvider  dateAdapter={AdapterDayjs}>
-        <DesktopDatePicker
-          InputProps={{sx:{borderRadius:50,height:40,color:'grey','& .MuiSvgIcon-root':{}}}}
-          value={value}
-          minDate={dayjs('2017-01-01')}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />
-        
-          
-      </LocalizationProvider>
-    </Paper>
-            
-            
-           
+            <Paper
+              component="form"
+              sx={{ p: '2px 4px', display: 'flex', alignItems: 'center',borderRadius:50 ,maxWidth:1600 ,}}
+            >
+            <LocalizationProvider  dateAdapter={AdapterDayjs} >
+              <DatePicker
+              
+                InputProps={{sx:{borderRadius:50,height:40,color:'grey','& .MuiSvgIcon-root':{}}}}
+                value={fecha}
+                
+                minDate={dayjs(new Date(new Date() -1))}
+                onChange={(newValue) => {
+                  setValue(newValue);
+                  setHorario(newValue);
+                  setDia((new Date(newValue).getDay()-1)===-1? 6: (new Date(newValue).getDay()-1))
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+            </Paper>
           </Grid>
-        
         </Box>
         <Box >
-        
         <>
-        
-      <Box>
-
-      </Box>
-      <Box sx={{ p:4,textAlign: 'center' }}>
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={12} md={8}  justifyContent='center' alignContent='center' alignItems='center' 
-        >
-          <Grid item xs={12}>
-              <Typography style={{...style.typography,color:style.color.letraDark,fontSize:35,fontWeight:800}} >HORARIO</Typography>
+          <Box sx={{ p:4,textAlign: 'center' }}>
+            <Grid container spacing={1}>
+              <Grid item xs={12} sm={12} md={8}  justifyContent='center' alignContent='center' alignItems='center' 
+              >
+                <Grid item xs={12}>
+                    <Typography style={{...style.typography,color:style.color.letraDark,fontSize:35,fontWeight:800}} >HORARIO</Typography>
+                  </Grid>
+                <TableroDias rows={rows} dia={dia} setDia={setDia} columns={columns}/>
+              </Grid>
+              <Grid item xs={12} sm={12} md={4}  
+              >
+                <RigthBar/>
+              </Grid>
             </Grid>
-          <TableroDias rows={rows} columns={columns}/>
-        </Grid>
-        <Grid item xs={12} sm={12} md={4}  
-        >
-           
-          <RigthBar/>
-        </Grid>
-        
-      </Grid>
-      </Box>
+          </Box>
         </>
-        
         </Box>
-      
       </Box>
-      
     </Box>
     
   );

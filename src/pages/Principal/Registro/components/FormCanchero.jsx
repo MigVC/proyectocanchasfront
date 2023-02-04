@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, Formik } from 'formik'
-import { createCancheroRequest } from '../../../../api/apiRequest'
+
+import { publicRequest } from '../../../../api/apiRequest'
 import swal from "sweetalert"
 
 export const FormCanchero = () => {
@@ -34,7 +35,7 @@ export const FormCanchero = () => {
                     values.sexo = values.sexoM? "M":values.sexoF?"F":"otro"
                     console.log(values)
                     try {
-                        await createCancheroRequest(values)
+                        await publicRequest(values)
                         swal({
                             title: "Cancha registrada",
                             icon: "success",

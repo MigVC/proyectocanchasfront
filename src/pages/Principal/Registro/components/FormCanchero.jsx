@@ -32,10 +32,10 @@ export const FormCanchero = () => {
                 }}
 
                 onSubmit={async (values, actions) => {
-                    values.sexo = values.sexoM? "M":values.sexoF?"F":"otro"
+                    values.sexo = values.sexoM ? "M" : values.sexoF ? "F" : "otro"
                     console.log(values)
                     try {
-                        await publicRequest(values)
+                        await publicRequest.post("/auth/canchero/signup", values)
                         swal({
                             title: "Cancha registrada",
                             icon: "success",
@@ -106,14 +106,23 @@ export const FormCanchero = () => {
                                 <div className='my-2 col-lg-6 col-sm-6'>
                                     <label className='fw-bold text-center' style={{ "fontFamily": "cambria" }}> Sexo </label>
                                     <div className='d-flex align-items-center btn-group d-flex justify-content-center' role="group">
-                                        <input onChange={handleChange} name="sexoM" className="btn-check" id="sexoM" type="radio" />
-                                        <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoM" >Masculino</label>
+                                        <div className='form-check'>
+                                            <input onChange={handleChange} name="sexo" className="btn-check" id="sexoM" type="radio" />
+                                            <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoM" >Masculino</label>
+                                        </div>
+                                        <div className='form-check'>
+                                            <input onChange={handleChange} name="sexo" className="btn-check" id="sexoF" type="radio" />
+                                            <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoF">Femenino</label>
+                                        </div>
+                                        <div className='form-check'>
+                                            <input onChange={handleChange} name="sexo" className="btn-check" id="sexoO" type="radio" />
+                                            <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoO">Otro</label>
+                                        </div>
 
-                                        <input onChange={handleChange} name="sexoF" className="btn-check" id="sexoF" type="radio" />
-                                        <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoF">Femenino</label>
 
-                                        <input onChange={handleChange} name="sexoO" className="btn-check" id="sexoO" type="radio" />
-                                        <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoO">Otro</label>
+
+
+
                                     </div>
                                 </div>
 

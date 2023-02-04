@@ -22,7 +22,7 @@ const app = initializeApp(firebaseConfig);
 export const uploadFile = (file, updateCb) => {
   const path = `${file.name}`;
   const storage = getStorage(app);
-  const storageRef = ref(storage, path + v4());
+  const storageRef = ref(storage, `canchascanchero/${path + v4()}`);
   const uploadTask = uploadBytesResumable(storageRef, file);
   return new Promise((res, rej) => {
     return uploadTask.on(

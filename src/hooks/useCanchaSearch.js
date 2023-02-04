@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { publicRequest } from '../api/apiRequest';
+import swal from 'sweetalert';
 
 export const useCanchaSearch = () => {
   const [isFetching, setIsFetching] = useState(true);
@@ -11,7 +12,14 @@ export const useCanchaSearch = () => {
       setCanchaList(resp.data);
       setIsFetching(false);
     } catch (error) {
-      console.log(error.message);
+      console.log('Im here');
+      console.log(error);
+      swal({
+        title: 'Error',
+        icon: 'error',
+        text: 'Algo sucedió con las canchitas, por favor recarga la página',
+        buttons: 'OK',
+      });
     }
   };
 

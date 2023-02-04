@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useParams } from 'react-router'
 import Box from '@mui/material/Box';
 import {  Grid, Paper,TextField, Typography } from '@mui/material';
-import { styled } from '@mui/system';
 import { TableroDias } from './components/TableroDias';
-import { TableActionsCanchero, tableActionsUsuario } from './components/UpdateEstado';
+import { TableActionsCanchero } from './components/UpdateEstado';
 import FondoHorario from '../../../assets/images/FondoHorario.jpg'
 import { TextoPortada } from '../../../components/common/TextoPortada';
 import { RigthBar } from '../../../components/layouts/RigthBar';
@@ -13,18 +12,10 @@ import dayjs from 'dayjs';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import { DatePicker, DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { headerStyle, style } from '../../../theme/style';
 import {TextoCentrado} from '../../../components/common/TextoCentrado'
 import { HorarioContext } from '../../../context/HorarioContext';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.primary,
-}));
 
 const rows = [
   {
@@ -224,13 +215,8 @@ const columns = [
 
 export const TableroCanchita = () => {
   const params= useParams();
-  const [value, setValue] = React.useState(new Date());
-  const [hour, setHour] = useState(new Date())
   const { setHorario, fecha } = useContext(HorarioContext);
   const [dia, setDia] = React.useState((new Date(fecha).getDay()-1)===-1? 6: (new Date(fecha).getDay()-1));
-  const handleChange = (newValue) => {
-    setValue(newValue);
-  };
   return (
     <Box sx={{fontFamily:'Montserrat'}}>
       <Box sx={{
@@ -302,7 +288,6 @@ export const TableroCanchita = () => {
                 
                 minDate={dayjs(new Date(new Date() -1))}
                 onChange={(newValue) => {
-                  setValue(newValue);
                   setHorario(newValue);
                   setDia((new Date(newValue).getDay()-1)===-1? 6: (new Date(newValue).getDay()-1))
                 }}

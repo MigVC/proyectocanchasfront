@@ -1,16 +1,28 @@
 import React from 'react';
+import { contributors } from '../../data/Contributors';
+import { CardContrib } from './CardContrib';
+
+
 
 export const PieHome = () => {
   return (
-    <div className='text-center colorprim p-5'>
+    <div className='text-center colorprim p-1'>
       <div className='mx-3 animate__animated animate__fadeIn'>
-        <div className='d-flex justify-content-center mt-5'>
+        <div className='row d-flex justify-content-center mt-3'>
+          {
+            contributors.map((contributor) => (
+              <div className='col-lg-2 col-md-4 col-sm-6' key={contributor.correo}>
+                <CardContrib values={contributor}  />
+              </div>
 
-          <a className='mx-3' target="_blank" rel="noreferrer noopener" href='https://www.google.com/'> <ion-icon name="logo-facebook" color="light" size="large"></ion-icon> </a>
+            ))
+          }
 
-          <a className='mx-3' target="_blank" rel="noreferrer noopener" href='https://www.google.com/'> <ion-icon name="logo-whatsapp" color="light" size="large"></ion-icon></a>
 
-          <a className='mx-3' target="_blank" rel="noreferrer noopener" href='https://www.google.com/'><ion-icon name="logo-instagram" color="light" size="large"></ion-icon></a>
+        </div>
+
+        <div className='text-light d-flex justify-content-center mt-5'>
+          Canchitas Cusco
 
         </div>
       </div>

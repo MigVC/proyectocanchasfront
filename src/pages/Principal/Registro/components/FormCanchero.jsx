@@ -33,9 +33,9 @@ export const FormCanchero = () => {
 
                 onSubmit={async (values, actions) => {
                     values.sexo = values.sexoM ? "M" : values.sexoF ? "F" : "otro"
-                    console.log(values)
                     try {
-                        await publicRequest.post("/auth/canchero/signup", values)
+                        const response = await publicRequest.post("/auth/canchero/signup", values)
+                        console.log(response)
                         swal({
                             title: "Cancha registrada",
                             icon: "success",

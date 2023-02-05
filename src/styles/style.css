@@ -41,3 +41,20 @@ ion-icon {
     color: var(--primary);
     font-weight: bold;
 }
+
+.imageCont {
+    max-width: 3.5rem;
+    border-radius: 3rem;
+    display: flex;
+    align-self: center;
+
+}
+
+.cardCont {
+    background: none;
+    border: none;
+}
+
+.textCont {
+    font-size: 0.8rem;
+}

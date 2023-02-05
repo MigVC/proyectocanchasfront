@@ -34,9 +34,9 @@ export const LoginCanchero = () => {
     MostrarContraseña: false,
   });
   const { Usuario, Contraseña } = formData;
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    signIn({ correo: Usuario, password: Contraseña });
+    await signIn({ correo: Usuario, password: Contraseña });
     navigate('/canchero');
   };
   const handleOnchange = (e) => {

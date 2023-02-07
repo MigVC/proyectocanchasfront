@@ -190,13 +190,14 @@ export const Agregar = ({ setOpen, closeModal }) => {
               {...register('files')}
               inputProps={{
                 multiple: true,
+                color:'red'
               }}
               onChange={(e) => convert2Base64(e.target.files)}
               error={!!errors.files}
               helperText={!!errors.files ? errors.files.message : null}
             />
           </Grid>
-          <div
+          <Grid item xs={12}
             style={{
               width: '100%',
               display: 'flex',
@@ -221,13 +222,13 @@ export const Agregar = ({ setOpen, closeModal }) => {
                       width='130px'
                       alt='upload'
                     />
-                    <Button onClick={() => deleteHandler(image)}>
+                    <Button style={{backgroundColor:'#ffc107',margin:2,color:style.color.letra,}} onClick={() => deleteHandler(image)}>
                       Borrar imagen
                     </Button>
                   </div>
                 );
               })}
-          </div>
+          </Grid>
           <div
             style={{
               width: '100%',

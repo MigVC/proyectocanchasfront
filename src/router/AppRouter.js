@@ -26,7 +26,7 @@ export const AppRouter = () => {
           <Route key={index} path={path} element={component} />
         ))}
         {privateRoutes.map(({ path, component }, index) => (
-          <Route element={<PrivateRoute user={user} />}>
+          <Route key={index} element={<PrivateRoute user={user} />}>
             <Route path={path} element={component} />
           </Route>
         ))}

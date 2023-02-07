@@ -9,8 +9,10 @@ import { HorarioContext } from '../../../../context/HorarioContext';
 
 
 function TabPanel(props) {
-  const { row,columns, value, index} = props;
- 
+  const { habilitado,row,columns, value, index} = props;
+  const { setHorario, fecha } = useContext(HorarioContext);
+  console.log(fecha)
+  console.log(new Date() )
   return (
     <div
       role="tabpanel"
@@ -18,8 +20,21 @@ function TabPanel(props) {
    >
       {value === index && (
         <Box sx={{ p: 3 }}>
-         
-          <TableroHorarioDia data={row} columns={columns}/>
+          {habilitado==='usuario'?
+          <>
+          {
+            (new Date(fecha)).toDateString=== (new Date()).toDateString 
+            ?
+            <TableroHorarioDia data={row} columns={columns}/>
+            :
+            <div>
+              egag
+            </div>
+
+          }
+          </>
+          :
+          <TableroHorarioDia data={row} columns={columns}/>}
         </Box>
       )}
     </div>
@@ -31,7 +46,7 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export const TableroDias = ({rows,setDia,dia,columns}) => {
+export const TableroDias = ({habilitado,rows,setDia,dia,columns}) => {
   const { setHorario, fecha } = useContext(HorarioContext);
   const Fecha=new Date(fecha)
     const handleChange = (event, newValue) => {
@@ -68,9 +83,11 @@ export const TableroDias = ({rows,setDia,dia,columns}) => {
         ))
       }
       </Tabs>
+
       {
-        rows.map((row,index)=>(<TabPanel columns={columns} row={row} key={row.id} value={dia} index={index}/>))
+        rows.map((row,index)=>(<TabPanel habilitado={habilitado} columns={columns} row={row} key={row.id} value={dia} index={index}/>))
       }
+      
     </Box>
     </>
   )

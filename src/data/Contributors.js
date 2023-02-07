@@ -1,6 +1,7 @@
 import Miguel from "../assets/contributors/Miguel.jpeg"
 import MiguelE from "../assets/contributors/MiguelE.JPG"
 import giovdey from "../assets/contributors/giovdey.jpg"
+import Richard from "../assets/contributors/Richard.jpg"
 
 export const contributors = [
     
@@ -28,7 +29,7 @@ export const contributors = [
     {
         "nombre": "Richard Jesus Puma Huillca",
         "correo": "052113@unsaac.edu.pe",
-        "imagen":giovdey,
+        "imagen":Richard,
         "github":"https://github.com/Mike-code1805",
         "whatsapp":"https://wa.link/qjj5wu"
     },

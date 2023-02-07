@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router'
 import Box from '@mui/material/Box';
-import {  Grid, Paper,TextField, Typography } from '@mui/material';
+import {  Grid, IconButton, Modal, Paper,TextField, Tooltip, Typography } from '@mui/material';
 import { TableroDias } from './components/TableroDias';
 import { TableActionsCanchero } from './components/UpdateEstado';
 import FondoHorario from '../../../assets/images/FondoHorario.jpg'
@@ -16,177 +16,29 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { headerStyle, style } from '../../../theme/style';
 import {TextoCentrado} from '../../../components/common/TextoCentrado'
 import { HorarioContext } from '../../../context/HorarioContext';
-
+import EditIcon from '@mui/icons-material/Edit';
+import { FormUpdateCanchita } from './components/FormUpdateCanchita';
 const rows = [
   {
     id:'Lunes',
-    horas:[{
-      name:'7:00 am - 8:00 am',
-      status:'Disponible',
-    },
-    {
-      name:'9:00 am - 10:00 am',
-      status: 'Reservado',
-    } ,
-    {
-      name:'1:00 pm - 2:00 pm',
-      status: 'Deshabilitado',
-    },
-    {
-      name:'2:00 am - 3:00 am',
-      status:'Disponible'
-    },
-    {
-      name:'3:00 am - 4:00 am', 
-      status:'Reservado'
-    },]
-      
   },
   {
-    id:'Martes',horas:[
-      {
-        name:'8:00 am - 9:00 am',
-        status:'Deshabilitado',
-      },
-      {
-        name:'10:00 am - 11:00 am',
-        status: 'Disponible',
-      } ,
-      {
-        name:'1:00 pm - 2:00 pm',
-        status: 'Deshabilitado',
-      },
-      {
-        name:'2:00 am - 3:00 am',
-        status:'Disponible'
-      },
-      {
-        name:'3:00 am - 4:00 am', 
-        status:'Reservado'
-      },
-    ]
+    id:'Martes',
   },
   {
-    id:'Miercoles',horas:[
-      {
-        name:'7:00 am - 8:00 am',
-        status:'Reservado',
-      },
-     {
-        name:'9:00 am - 10:00 am',
-        status: 'Reservado',
-      } ,
-      {
-        name:'1:00 pm - 2:00 pm',
-        status: 'Reservado',
-      },
-      {
-        name:'2:00 am - 3:00 am',
-        status:'Deshabilitado'
-      },
-      {
-        name:'3:00 am - 4:00 am', 
-        status:'Reservado'
-      },
-    ]
+    id:'Miercoles',
   },
   {
-    id:'Jueves',horas:[
-      {
-        name:'7:00 am - 8:00 am',
-        status:'Reservado',
-      },
-      {
-        name:'9:00 am - 10:00 am',
-        status: 'Reservado',
-      } ,
-      {
-        name:'1:00 pm - 2:00 pm',
-        status: 'Deshabilitado',
-      },
-      {
-        name:'2:00 am - 3:00 am',
-        status:'Reservado'
-      },
-      {
-        name:'3:00 am - 4:00 am', 
-        status:'Reservado'
-      },
-    ]
+    id:'Jueves',
   },
   {
-    id:'Viernes',horas:[
-      {
-        name:'7:00 am - 8:00 am',
-        status:'Disponible',
-      },
-      {
-        name:'9:00 am - 10:00 am',
-        status: 'Reservado',
-      } ,
-      {
-        name:'1:00 pm - 2:00 pm',
-        status: 'Deshabilitado',
-      },
-      {
-        name:'2:00 am - 3:00 am',
-        status:'Reservado'
-      },
-      {
-        name:'3:00 am - 4:00 am', 
-        status:'Reservado'
-      },
-    ]
+    id:'Viernes',
   },
   {
-    id:'Sabado',horas:[
-      {
-        name:'7:00 am - 8:00 am',
-        status:'Disponible',
-      },
-      {
-        name:'9:00 am - 10:00 am',
-        status: 'Reservado',
-      } ,
-      {
-        name:'1:00 pm - 2:00 pm',
-        status: 'Reservado',
-      },
-      {
-        name:'2:00 am - 3:00 am',
-        status:'Disponible'
-      },
-      {
-        name:'3:00 am - 4:00 am', 
-        status:'Reservado'
-      },
-    ]
+    id:'Sabado',
   },
   {
-    id:'Domingo',horas:[
-      {
-        name:'7:00 am - 8:00 am',
-        status:'Reservado',
-      },
-      {
-        name:'9:00 am - 10:00 am',
-        status: 'Reservado',
-      } ,
-      {
-        name:'1:00 pm - 2:00 pm',
-        status: 'Deshabilitado',
-      },
-      {
-        name:'2:00 am - 3:00 am',
-        status:'Reservado'
-      },
-      {
-        name:'3:00 am - 4:00 am', 
-        status:'Deshabilitado'
-      },
-      
-    ],
-    
+    id:'Domingo',
   },
   
 ];
@@ -215,13 +67,18 @@ const columns = [
 
 export const TableroCanchita = () => {
   const params= useParams();
+  const [open, setOpen] = useState(false);
+
+  const closeModal = (eventClose) => {
+    setOpen(eventClose);
+  };
   const { setHorario, fecha } = useContext(HorarioContext);
   const [dia, setDia] = React.useState((new Date(fecha).getDay()-1)===-1? 6: (new Date(fecha).getDay()-1));
   return (
     <Box sx={{fontFamily:'Montserrat'}}>
       <Box sx={{
           ...headerStyle,
-          backgroundImage:`url(${FondoHorario})`,
+          backgroundImage:`url(${FondoHorario})`,backgroundRepeat:'no-repeat',backgroundSize:'cover'
         }}>
         <Box alignContent='center' sx={{textAlign: 'center', p:{xs:1,md:5,sm:2},marginTop:{xs:3,md:2,sm:1}}}>
         <div style={{justifyContent:'space-between'}}>
@@ -232,13 +89,27 @@ export const TableroCanchita = () => {
           </div>
         </Box>
       </Box>
-      <Box>
+      <Box textAlign='right' p marginRight={5} marginY={2}>
+        <Tooltip
+          title='Editar Canchita'
+          aria-label='editar'>
+            <IconButton  onClick={() => setOpen(true)}>
+              <EditIcon style={{width:30,height:30}}/>
+            </IconButton>
+        </Tooltip>
+        <Modal open={open} onClose={() => setOpen(false)}>
+          <div style={{ ...style.modal}}>
+            <FormUpdateCanchita/>
+          </div>
+        </Modal>
+        </Box>
+      {/* <Box marginTop={-5}>
         <TextoCentrado
-        encabezado={''}
-        titulo={'ATENCIÓN'}
+        encabezado={'CANCHERO'}
+        titulo={'EDITA LA INFORACIÓN DE TU CANHITA'}
         contenido={'Antes de elegir el horario ten en cuenta lo siguiente'}
         />
-      </Box>
+      </Box> */}
       <Box>
         <Box sx={{ p:4,textAlign: 'center',color:'gray',backgroundColor:'rgb(244, 229, 194,0.2)' }}>
           <Grid container >

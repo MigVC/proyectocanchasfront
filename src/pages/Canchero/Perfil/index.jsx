@@ -1,5 +1,5 @@
-import { Box, Button,Grid, Rating, Typography} from '@mui/material'
-import React from 'react'
+import { Box, Button,Grid, IconButton, Modal, Rating, Tooltip, Typography} from '@mui/material'
+import React, { useState } from 'react'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { Link, Outlet } from 'react-router-dom'
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
@@ -11,15 +11,31 @@ import { TextoCentrado } from '../../../components/common/TextoCentrado';
 import { EncabezadoPerfil } from './components/EncabezadoPerfil';
 import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
 import { CardIr } from '../../../components/common/CardIr';
+import { FormUpdatePerfil } from './components/FormUpdatePerfil';
+import { style } from '../../../theme/style';
 export const CancheroPerfil = () => {
+  const [open, setOpen] = useState(false);
+
+  const closeModal = (eventClose) => {
+    setOpen(eventClose);
+  };
   return (
     <Box >
       <EncabezadoPerfil imagen={Perfil2} titulo={'Giovdey Abraham'} contenido={'CANCHERO'}/>
       <Box sx={{fontFamily:'Montserrat'}}>
       <Box sx={{textAlign:'end',marginTop:{md:-8,xs:-6,sm:-7},marginRight:{md:8,xs:1,sm:3}}}>
-        <Button>
+        <Tooltip
+        title='Editar Perfil'
+        aria-label='editar'>
+        <IconButton onClick={() => setOpen(true)}>
           <ManageAccountsIcon sx={{color:'primary',width: {md:50,sm:40,xs:30}, height:{md:50,sm:40,xs:30}}}/>
-        </Button>
+        </IconButton>
+        </Tooltip>
+        <Modal open={open} onClose={() => setOpen(false)}>
+          <div style={{ ...style.modal}}>
+            <FormUpdatePerfil/>
+          </div>
+        </Modal>
       </Box>
         <Box sx={{fontSize:{xs:15,sm:20},marginTop:{md:-8,xs:-6,sm:-7},fontWeight: 300, mx:{xs:0,sm:6,md:20}}}>
           <Grid container marginLeft={{md:20,sm:23}}>

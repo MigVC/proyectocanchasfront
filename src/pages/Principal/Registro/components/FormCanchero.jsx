@@ -3,6 +3,7 @@ import { Field, Formik } from 'formik'
 
 import { publicRequest } from '../../../../api/apiRequest'
 import swal from "sweetalert"
+import { Grid, TextField } from '@mui/material'
 
 export const FormCanchero = () => {
     return (
@@ -55,176 +56,169 @@ export const FormCanchero = () => {
                 {
                     ({ handleChange, handleSubmit, values, setFieldValue, isSubmitting }) => (
                         <form onSubmit={handleSubmit} className="text-center">
-                            <div className='row'>
-                                <div className='my-2 col-lg-6 col-sm-12' >
-                                    <label className='fw-bold fs-6' style={{ "fontFamily": "cambria" }}> DNI </label>
-                                    <input
+                            <Grid container spacing={2} p={4}>
+                                <Grid item xs={6} >
+                                    <TextField
+                                        fullWidth
                                         name="dni"
                                         value={values.dni}
                                         onChange={handleChange}
                                         type="text"
-                                        placeholder='Ingresa tu dni'
-                                        className='form-control border border-dark'
+                                        label='DNI'
+                                        placeholder='Ingresa tu DNI'
                                     />
-                                </div>
-
-                                <div className='my-2 col-lg-6 col-sm-12' >
-                                    <label className='fw-bold fs-6' style={{ "fontFamily": "cambria" }}> Nombres </label>
-                                    <input
+                                    
+                                </Grid>
+                                <Grid item xs={6} >
+                                    <TextField
+                                        fullWidth
                                         name="nombres"
                                         value={values.nombres}
                                         onChange={handleChange}
                                         type="text"
                                         placeholder='Ingresa tus nombres'
-                                        className='form-control border border-dark '
+                                        label='Nombres'
                                     />
-                                </div>
-                            </div>
-
-                            <div className='row'>
-                                <div className='my-2 col-lg-7 col-sm-12' >
-                                    <label className='fw-bold fs-6' style={{ "fontFamily": "cambria" }}> Apellidos </label>
-                                    <input
+                                </Grid>
+                                <Grid item xs={6} >
+                                    <TextField
+                                        fullWidth
                                         name="apellidos"
                                         value={values.apellidos}
                                         onChange={handleChange}
                                         type="text"
                                         placeholder='Ingresa tus apellidos'
-                                        className='form-control border border-dark '
+                                        label='Apellidos'
                                     />
-                                </div>
+                                </Grid>
 
-                                <div className='my-2 col-lg-5 col-sm-12'>
-                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Fecha de nacimiento </label>
-                                    <input className='form-control border border-dark' type="date" onChange={handleChange} id="nacimineto" name="nacimiento" value={values.nacimiento} />
-                                </div>
-
-                            </div>
-
-                            <div className='row'>
-
-                                <div className='my-2 col-lg-6 col-sm-6'>
-                                    <label className='fw-bold text-center' style={{ "fontFamily": "cambria" }}> Sexo </label>
-                                    <div className='d-flex align-items-center btn-group d-flex justify-content-center' role="group">
-                                        <div className='form-check'>
+                                <Grid item xs={6} >
+                                    <TextField 
+                                        fullWidth
+                                        type="date" 
+                                        onChange={handleChange} 
+                                        id="nacimineto" 
+                                        name="nacimiento" 
+                                        value={values.nacimiento} 
+                                        placeholder='Fecha de nacimiento'
+                                        // label='Fecha de nacimiento'
+                                    />
+                                </Grid>
+                                <Grid item xs={12} >
+                                    <label className='text-center' style={{ "fontFamily": "Montserrat" }}> Sexo </label>
+                                    <Grid container >
+                                        <Grid item xs={4} >
                                             <input onChange={handleChange} name="sexo" className="btn-check" id="sexoM" type="radio" />
-                                            <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoM" >Masculino</label>
-                                        </div>
-                                        <div className='form-check'>
+                                            <label className="btn btn-outline-success fw-bold" htmlFor="sexoM" >Masculino</label>
+                                        </Grid>
+                                        <Grid item xs={4} >
                                             <input onChange={handleChange} name="sexo" className="btn-check" id="sexoF" type="radio" />
-                                            <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoF">Femenino</label>
-                                        </div>
-                                        <div className='form-check'>
+                                            <label className="btn btn-outline-success fw-bold" htmlFor="sexoF">Femenino</label>
+                                        </Grid>
+                                        <Grid item xs={4} >
                                             <input onChange={handleChange} name="sexo" className="btn-check" id="sexoO" type="radio" />
-                                            <label className="mx-2 btn btn-outline-success fw-bold" htmlFor="sexoO">Otro</label>
-                                        </div>
-
-
-
-
-
-                                    </div>
-                                </div>
-
-                                <div className='my-2 col-lg-6 col-sm-6'>
-                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Teléfono </label>
-                                    <input
+                                            <label className="btn btn-outline-success fw-bold" htmlFor="sexoO">Otro</label>
+                                        </Grid>
+                                        </Grid>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
                                         name="telefono"
                                         onChange={handleChange}
                                         type="text"
                                         className='form-control border border-dark'
                                         placeholder='Ingresa tu numero de telefono'
                                         value={values.telefono}
+                                        label='Teléfono'
                                     />
-                                </div>
-                            </div>
-
-                            <div className='row'>
-                                <div className='col-lg-6 col-sm-6 my-2'>
-                                    <label className='fw-bold fs-6' style={{ "fontFamily": "cambria" }}> Nombre de la cancha </label>
-                                    <input
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
                                         name="nombre"
+                                        fullWidth
                                         value={values.nombre}
                                         onChange={handleChange}
                                         type="text"
                                         placeholder='Ingresa nombre de la cancha'
-                                        className='form-control border border-dark '
+                                        label='Nombre de la canchita'
                                     />
-                                </div>
-
-                                <div className='col-lg-6 col-sm-6 my-2'>
-                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Correo electrónico </label>
-                                    <input
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
                                         name="correo"
                                         onChange={handleChange}
                                         type="email"
-                                        className='form-control border border-dark'
                                         placeholder='Ingresa tu correo electrónico'
                                         value={values.correo}
+                                        label='Correo electrónico'
                                     />
-                                </div>
-                            </div>
-
-                            <div className='row'>
-                                <div className='col-lg-5 col-sm-6 my-2'>
-                                    <label className='fw-bold'> Descripción de la cancha </label>
-
-                                    <Field as="textarea" name="description" className="form-select border border-dark" onChange={handleChange} value={values.description}>
-
-                                    </Field>
-                                </div>
-
-                                <div className='col-lg-7 col-sm-6 my-2'>
-                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}> Ubicación </label>
-                                    <input
-                                        name="ubicacion"
-                                        onChange={handleChange}
-                                        type="text"
-                                        className='form-control border border-dark'
-                                        placeholder='Ingresa tu correo electrónico'
-                                        value={values.ubicacion}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='row'>
-                                <div className='col-lg-4 col-sm-12 my-2'>
-                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}> password </label>
-                                    <input
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
                                         name="password"
+                                        fullWidth
+                                        label='Contraseña'
                                         onChange={handleChange}
                                         type="text"
-                                        className='form-control border border-dark'
                                         placeholder='Ingresa tu password'
                                         value={values.password}
                                     />
-                                </div>
+                                </Grid>
 
-                                <div className='col-lg-4 col-sm-12 my-2'>
-                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}>Confirmar password </label>
-                                    <input
+                                <Grid item xs={6}>
+                                    <TextField
                                         name="passwordConfirmation"
+                                        fullWidth
                                         onChange={handleChange}
                                         type="text"
-                                        className='form-control border border-dark'
-                                        placeholder='Confirma tu password'
+                                        label='Confirmar Contraseña '
+                                        placeholder='Confirmar Contraseña'
                                         value={values.passwordConfirmation}
                                     />
-                                </div>
-                                <div className='col-lg-4 col-sm-12 my-2'>
-                                    <label className='fw-bold' style={{ "fontFamily": "cambria" }}>Espacios para vehiculos </label>
-                                    <input
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        name="ubicacion"
+                                        onChange={handleChange}
+                                        type="text"
+                                        label='Ubicación'
+                                        placeholder='Ingresa tu correo electrónico'
+                                        value={values.ubicacion}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField 
+                                        name="description"
+                                        fullWidth
+                                        label='Descripción de la canchita'
+                                        onChange={handleChange} 
+                                        value={values.description}
+                                        multiline
+                                        rows={2}
+                                    />
+                                </Grid>
+                                
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
                                         name="cantAparcamiento"
                                         onChange={handleChange}
                                         type="number"
-                                        className='form-control border border-dark'
-                                        placeholder='Nro de lugares de estacionamiento'
+                                        label='Espacios para vehiculos'
+                                        placeholder='Espacios para vehiculos'
                                         value={values.cantAparcamiento}
                                     />
-                                </div>
-                            </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                <button type='submit' className='btn btn-success ' disabled={isSubmitting}> {isSubmitting ? "Registrando ..." : "Registrarse"} </button>
+                                </Grid>
+                            </Grid>
+                            
 
-                            <button type='submit' className='btn btn-success my-3' disabled={isSubmitting}> {isSubmitting ? "Registrando ..." : "Registrarse"} </button>
+                            
 
                         </form>
                     )

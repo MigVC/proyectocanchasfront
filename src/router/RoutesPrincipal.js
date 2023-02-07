@@ -6,6 +6,7 @@ import { CancheroPerfil } from '../pages/Canchero/Perfil';
 import { TableroCanchita } from '../pages/Canchero/AdminCanchitas';
 import { HomeScreen } from '../pages/Principal/inicio';
 import { InfoRegistro } from '../pages/Principal/Registro';
+import { TableroCanchitaUsuario } from '../pages/Principal/ReservaCanchitas';
 
 export const rutasPublicas = [
   {
@@ -26,6 +27,11 @@ export const rutasPublicas = [
         path: '/canchitas',
         element: <DashBoard />,
         name: 'Canchitas',
+      },
+      {
+        path: '/canchitas/:canchitaid',
+        component: <TableroCanchitaUsuario />,
+        name: 'Tablero Canchita Principal',
       },
     ],
   },

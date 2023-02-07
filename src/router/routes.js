@@ -5,6 +5,7 @@ import { InfoRegistro } from '../pages/Principal/Registro';
 import { DashBoardCanchero } from '../pages/Canchero';
 import { CancheroPerfil } from '../pages/Canchero/Perfil';
 import { TableroCanchita } from '../pages/Canchero/AdminCanchitas';
+import { TableroCanchitaUsuario } from '../pages/Principal/ReservaCanchitas';
 
 export const publicRoutes = [
   {
@@ -21,6 +22,11 @@ export const publicRoutes = [
     path: '/canchitas',
     component: <DashBoard />,
     name: 'Canchitas',
+  },
+  {
+    path: '/canchitas/:canchitaid',
+    component: <TableroCanchitaUsuario />,
+    name: 'Tablero Canchita Principal',
   },
 ];
 

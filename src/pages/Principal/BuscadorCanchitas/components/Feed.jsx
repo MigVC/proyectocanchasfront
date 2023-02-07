@@ -22,7 +22,7 @@ export const Feed = ({canchaList}) => {
                   precioHora={value.precioHora}
                   person={'Canchero'}
                   button={'Ver'}
-                  link={'/canchero/canchita/'}
+                  link={'/canchitas/'}
                   id={index}
                 />
               </Grid>

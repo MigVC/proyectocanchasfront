@@ -70,6 +70,7 @@ export const buttonStyle={
     button:{
             
             backgroundColor: style.color.primary, 
+            color:style.color.letra,
             '&:hover': {
                 backgroundColor: style.color.alternate,
                 color:style.color.primary,
@@ -153,14 +154,76 @@ themeTypography.typography.h4 = {
 };
 themeTypography.typography.h5 = {
     ...style.typography,
-    fontSize: '0.5rem',
+    fontSize: '0.9rem',
     '@media (min-width:600px)': {
-        fontSize: '0.8rem',
+        fontSize: '1rem',
     },
     [themeTypography.breakpoints.up('md')]: {
         fontSize: '1.1rem',
     },
-    color:'#323232',fontWeight:300
+    color:style.color.primary,fontWeight:550
+
+};
+export const themeTypographyPrincipal = createTheme();
+
+themeTypographyPrincipal.typography.h1 = {
+  ...style.typography,
+  fontSize: '3.5rem',
+  '@media (min-width:600px)': {
+      fontSize: '3.8rem',
+  },
+  [themeTypographyPrincipal.breakpoints.up('md')]: {
+      fontSize: '4rem',
+  },
+  color:style.color.letra,fontWeight:800
+
+};
+themeTypographyPrincipal.typography.h2 = {
+  fontSize: '2.3rem',
+  ...style.typography,
+'@media (min-width:600px)': {
+  fontSize: '3rem',
+},
+[themeTypographyPrincipal.breakpoints.up('md')]: {
+  fontSize: '3.5rem',
+},
+color:'white',fontWeight:700
+
+};
+themeTypographyPrincipal.typography.h3 = {
+  ...style.typography,
+  fontSize: '1.5rem',
+  '@media (min-width:600px)': {
+    fontSize: '1.6rem',
+  },
+  [themeTypographyPrincipal.breakpoints.up('md')]: {
+    fontSize: '1.6rem',
+  },
+  color:style.color.letra ,fontWeight:600,
+
+};
+themeTypographyPrincipal.typography.h4 = {
+  ...style.typography,
+  fontSize: '1.3rem',
+  '@media (min-width:600px)': {
+      fontSize: '1.4rem',
+  },
+  [themeTypographyPrincipal.breakpoints.up('md')]: {
+      fontSize: '1.5rem',
+  },
+  color:'white',fontWeight:300
+
+};
+themeTypographyPrincipal.typography.h5 = {
+  ...style.typography,
+  fontSize: '0.5rem',
+  '@media (min-width:600px)': {
+      fontSize: '0.8rem',
+  },
+  [themeTypographyPrincipal.breakpoints.up('md')]: {
+      fontSize: '1.1rem',
+  },
+  color:style.color.letraDark,fontWeight:300
 
 };
 export const themeTypographyWhite = createTheme();

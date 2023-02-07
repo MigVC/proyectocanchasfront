@@ -36,6 +36,7 @@ export const TableActionsCanchero = ({props,status}) => {
     Fecha.setHours(props)
     const onSubmit = (data) => {
       const formData = {
+          usuario:data.usuario,
           start: new Date(Fecha),
           end: new Date(Fecha.setHours(props+1)),
           state: data.status ,
@@ -56,25 +57,26 @@ export const TableActionsCanchero = ({props,status}) => {
       
       <div style={style.modal}>
       <div style={style.content}>
-        <Typography style={{...style.typography,marginBottom:25,fontWeight:600,fontSize:26,color:style.color.letraDark}}>
+        <Typography style={{...style.typography,marginBottom:2,fontWeight:600,fontSize:26,color:style.color.letraDark}}>
           Estado de la Canchita
-        </Typography>
-        <Typography style={{...style.typography,marginBottom:12,fontWeight:600,color:style.color.letraDark}}>
-          Hora
-        </Typography>
-        <Typography style={{...style.typography,fontWeight:300,color:style.color.letraDark}}>
-          {Fecha.getHours()}:00 -{Fecha.getHours()+1}:00
         </Typography>
         <Button  
           
           style={{borderRadius:40,
-            marginBottom:30,
+            marginBottom:10,
             marginTop:10,
             height:40,color:'white',
             width:150,background:status==='Deshabilitado'?"#f50057":status==='Reservado'?"#0276aa":"#00e676"}}
         >
           {status}
         </Button>
+        <Typography style={{...style.typography,marginBottom:2,fontWeight:600,color:style.color.letraDark}}>
+          Hora
+        </Typography>
+        <Typography style={{...style.typography,marginBottom:10,fontWeight:300,color:style.color.letraDark}}>
+          {Fecha.getHours()}:00 -{Fecha.getHours()+1}:00
+        </Typography>
+        
         <Typography style={{...style.typography,fontWeight:600,color:style.color.letraDark}}>
           Cambiar estado
         </Typography>
@@ -98,6 +100,18 @@ export const TableActionsCanchero = ({props,status}) => {
                       </option>
                     ))}
                   </TextField>
+                  {
+                    <TextField
+                    fullWidth
+                    style={{marginTop:9}}
+                    label='Nombre de la reserva'
+                    
+                    {...register('usuario')}
+                    
+                  >
+                    
+                  </TextField>
+                  }
                 </Grid>
                 <Grid container marginTop spacing={2}>
                   <Grid item xs={6}>
@@ -126,12 +140,5 @@ export const TableActionsCanchero = ({props,status}) => {
       </div>
     </Modal>
     </>
-  )
-}
-export const tableActionsUsuario = () => {
-  return (
-    <Button>
-        Reservar
-    </Button>
   )
 }

@@ -12,8 +12,6 @@ export const useCanchaSearch = () => {
       setCanchaList(resp.data);
       setIsFetching(false);
     } catch (error) {
-      console.log('Im here');
-      console.log(error);
       swal({
         title: 'Error',
         icon: 'error',

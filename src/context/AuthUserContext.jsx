@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useReducer } from 'react';
-
+import swal from 'sweetalert';
 import { authUserReducer } from './authUserReducer';
 import cancheroRequest from '../api/apiRequest';
 
@@ -36,9 +36,8 @@ export const AuthUserProvider = ({ children }) => {
   const checkToken = async () => {
     try {
       const token = window.localStorage.getItem('tokenCanchero');
-      console.log({token});
       if (!token) return dispatch({ type: 'notAuthenticated' });
-      
+
       const resp = await cancheroRequest.get('/auth/canchero/validation');
 
       if (resp.status !== 200) {
@@ -78,6 +77,12 @@ export const AuthUserProvider = ({ children }) => {
       });
       window.localStorage.setItem('tokenCanchero', data.token.authToken);
     } catch (error) {
+      swal({
+        title: 'Error',
+        icon: 'error',
+        text: error.response.data.message,
+        buttons: 'OK',
+      });
       dispatch({
         type: 'addError',
         payload: error.response.data.message || 'Información incorrecta',

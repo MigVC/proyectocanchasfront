@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useUploadImage } from '../../../hooks/useUploadImage';
 import { useLoadImages } from '../../../hooks/useLoadImages';
+import { useCanchasCanchero } from '../../../hooks/useCanchasCanchero';
 
 const registroCanchitaSchema = yup.object({
   nombreCanchita: yup.string().required('Ingrese nombre de la Canchita'),
@@ -38,6 +39,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 export const Agregar = ({ setOpen, closeModal }) => {
   const [openAlert, setOpenAlert] = useState(false);
+  const { postCanchas, verificationName } = useCanchasCanchero();
   const { statusObject, handleMultiple, setStatusObject, setLinks } =
     useUploadImage();
   const {
@@ -66,16 +68,21 @@ export const Agregar = ({ setOpen, closeModal }) => {
 
   const onSubmit = async (data) => {
     try {
-      handleMultiple(filesUploads);
+      await verificationName(data.nombreCanchita);
+      const imagesData = await handleMultiple(filesUploads);
       const formData = {
-        nombreCanchita: data.nombreCanchita,
-        descripcion: data.descripcion,
+        cantAparcamiento: data.cantApacamiento,
+        description: data.descripcion,
+        image: imagesData,
+        nombre: data.nombreCanchita,
+        precioHora: data.precio,
         ubicacion: data.ubicacion,
-        cantApacamiento: data.cantApacamiento,
-        precio: data.precio,
+        estado: 'opened',
       };
-      setOpenAlert(true);
-    } catch (e) {}
+      await postCanchas(formData);
+    } catch (e) {
+      console.log('Im here')
+    }
   };
   return (
     <div style={style.content}>

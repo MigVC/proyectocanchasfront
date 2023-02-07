@@ -24,20 +24,32 @@ import { useNavigate } from 'react-router-dom';
 import { buttonStyle, style } from '../../theme/style';
 import { useContext } from 'react';
 import { AuthUserContext } from '../../context/AuthUserContext';
+import swal from 'sweetalert';
+import { Loading } from '../../components/common/Loading/Loading';
 
 export const LoginCanchero = () => {
   const navigate = useNavigate();
-  const { signIn } = useContext(AuthUserContext);
+  const { signIn, status } = useContext(AuthUserContext);
   const [formData, setFormData] = useState({
     Usuario: '',
     Contraseña: '',
     MostrarContraseña: false,
   });
   const { Usuario, Contraseña } = formData;
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    await signIn({ correo: Usuario, password: Contraseña });
-    navigate('/canchero');
+
+    try {
+      await signIn({ correo: Usuario, password: Contraseña });
+      navigate('/canchero');
+    } catch (error) {
+      swal({
+        title: 'Error',
+        icon: 'error',
+        text: 'Error al ingresar',
+        buttons: 'OK',
+      });
+    }
   };
   const handleOnchange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -52,6 +64,10 @@ export const LoginCanchero = () => {
   const handleClickOcultarContraseña = (event) => {
     event.preventDefault();
   };
+
+  if (status === 'checking') {
+    return <Loading />;
+  }
 
   return (
     <div className={{ width: '100%', height: '100vh' }}>

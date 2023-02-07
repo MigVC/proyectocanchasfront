@@ -42,7 +42,7 @@ export const CardCanchas = ({
         component='img'
         alt='canchita'
         height='140'
-        image={image}
+        image={image[0]}
       />
       <CardContent sx={{ alignContent: 'center', alingContent: 'center' }}>
         <Grid container sx={{ marginTop: -2 }}>

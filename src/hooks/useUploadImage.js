@@ -38,7 +38,7 @@ export const useUploadImage = () => {
       );
     });
     const ls = await Promise.all(promises);
-    setLinks(ls);
+    return ls;
   };
 
   return {
@@ -46,5 +46,6 @@ export const useUploadImage = () => {
     links,
     handleMultiple,
     setStatusObject,
+    setLinks,
   };
 };

@@ -57,29 +57,28 @@ export const TableActionsCanchero = ({ props, status }) => {
 
   const onSubmit = async (data) => {
     // console.log({ data });
-    // const formData = {
-    //   toName: data.usuario,
-    //   start: `${new Date(Fecha).toISOString().substring(0, 10)} ${new Date(
-    //     Fecha
-    //   )
-    //     .toString()
-    //     .substring(16, 24)}`,
-    //   end: `${new Date(Fecha.setHours(props + 1))
-    //     .toISOString()
-    //     .substring(0, 10)} ${new Date(Fecha.setHours(props + 1))
-    //     .toString()
-    //     .substring(16, 24)}`,
-    //   state: data.status,
-    // };
-    // await createReservation(formData);
-    // console.log(formData);
-    filterReservations('2023-02-09')
-    // console.log({ props });
+    const formData = {
+      toName: data.usuario,
+      start: `${new Date(Fecha).toISOString().substring(0, 10)} ${new Date(
+        Fecha
+      )
+        .toString()
+        .substring(16, 24)}`,
+      end: `${new Date(Fecha.setHours(props + 1))
+        .toISOString()
+        .substring(0, 10)} ${new Date(Fecha.setHours(props + 1))
+        .toString()
+        .substring(16, 24)}`,
+      state: data.status,
+    };
+    await createReservation(formData);
+    console.log(Fecha);
+    console.log({ formData});
     // console.log(reservationList);
-    // setOpen(false);
+    setOpen(false);
   };
 
-  console.log({ reservationListFiltered });
+  // console.log({ reservationListFiltered });
   // console.log(reservado)
 
   // console.log(reservado)

@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import cancheroRequest from '../api/apiRequest';
+import { HorarioContext } from '../context/HorarioContext';
 export const useReservation = () => {
   const [isFetching, setIsFetching] = useState(true);
   const [reservationList, setReservationList] = useState([]);
@@ -33,6 +34,11 @@ export const useReservation = () => {
   const createReservation = async (reserv) => {
     try {
       await cancheroRequest.post('/api/reservation', reserv);
+      swal({
+        title: 'Cancha registrada',
+        icon: 'success',
+        buttons: 'OK',
+      });
       setIsFetching(false);
     } catch (error) {
       swal({
@@ -58,15 +64,17 @@ export const useReservation = () => {
     }
   };
 
-  const filterReservations = (reserva) => {
-    let reservations = new Date().toISOString().substring(0, 10);
-
+  const filterReservations = () => {
+    let reservations = '2023-02-08';
+    let undeReserva = new Date().toISOString().substring(0, 10);
     if (reservationList.length !== 0)
       setReservationListFiltered(
         reservationList.filter((fecha) =>
           fecha.start
             .substring(0, 10)
-            .includes(reserva ? reserva.toString() : reservations.toString())
+            .includes(
+              reservations ? reservations.toString() : undeReserva.toString()
+            )
         )
       );
   };

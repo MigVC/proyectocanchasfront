@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import {
   Button,
@@ -12,17 +12,21 @@ import {
 import { useReservation } from '../../../../hooks/useReservation';
 
 export const TableroHorarioDia = ({ data, columns }) => {
+  const { reservationList, createReservation, reservationListFiltered } =
+    useReservation();
+
+  const [hours, setHours] = useState([]);
   const Horas = [
-    '0:00',
-    '1:00',
-    '2:00',
-    '3:00',
-    '4:00',
-    '5:00',
-    '6:00',
-    '7:00',
-    '8:00',
-    '9:00',
+    '00:00',
+    '01:00',
+    '02:00',
+    '03:00',
+    '04:00',
+    '05:00',
+    '06:00',
+    '07:00',
+    '08:00',
+    '09:00',
     '10:00',
     '11:00',
     '12:00',
@@ -38,57 +42,54 @@ export const TableroHorarioDia = ({ data, columns }) => {
     '22:00',
     '23:00',
   ];
-  // const mock=[
-  //   {
-  //     state:'Reservado',
-  //     start:'Fri Feb 03 2023 15:03:05 GMT-0500 (hora estándar de Perú)',
-  //     end:'Fri Feb 03 2023 16:03:05 GMT-0500 (hora estándar de Perú)'
-  //   },
-  //   {
-  //     state:'Deshabilitado',
-  //     start:'Fri Feb 03 2023 16:03:05 GMT-0500 (hora estándar de Perú)',
-  //     end:'Fri Feb 03 2023 17:03:05 GMT-0500 (hora estándar de Perú)'
-  //   },
-  //   {
-  //     state:'Reservado',
-  //     start:'Fri Feb 03 2023 17:03:05 GMT-0500 (hora estándar de Perú)',
-  //     end:'Fri Feb 03 2023 18:03:05 GMT-0500 (hora estándar de Perú)'
-  //   },
-  //   {
-  //     state:'Reservado',
-  //     start:'Thu Feb 02 2023 11:26:24 GMT-0500 (hora estándar de Perú)',
-  //     end:'Thu Feb 02 2023 12:26:24 GMT-0500 (hora estándar de Perú)'
-  //   },
-  //   {
-  //     state:'Deshabilitado',
-  //     start:'Thu Feb 02 2023 12:26:24 GMT-0500 (hora estándar de Perú)',
-  //     end:'Thu Feb 02 2023 13:26:24 GMT-0500 (hora estándar de Perú)'
-  //   },
-  //   {
-  //     state:'Reservado',
-  //     start:'Thu Feb 02 2023 13:26:24 GMT-0500 (hora estándar de Perú)',
-  //     end:'Thu Feb 02 2023 14:26:24 GMT-0500 (hora estándar de Perú)'
-  //   }
-  // ]
-  // prueba.setHours(Number('700'))
-  // {
-  //   mock.map((data)=>console.log(new Date(data.start)))
-  // }
-  const Estado = 'Disponible';
-  const {reservationList,createReservation}=useReservation()
+  useEffect(() => {
+    setHoursAlgorithem();
+  }, [reservationListFiltered]);
+
+  const setHoursAlgorithem = () => {
+    let arrayHoursBack = [];
+    let arrayHours = [];
+    console.log(reservationListFiltered);
+    for (let j = 0; j < reservationListFiltered.length; j++) {
+      arrayHoursBack.push(reservationListFiltered[j].start.substring(11, 13));
+    }
+    for (let i = 0; i < Horas.length; i++) {
+      let response = arrayHoursBack.find((h) => h === Horas[i].substring(0, 2));
+      if (typeof response === 'undefined') {
+        arrayHours.push({
+          hour: Horas[i],
+          state: 'Disponible',
+        });
+      } else {
+        let response = reservationListFiltered.find(
+          (h) => h.start.substring(11, 13) === Horas[i].substring(0, 2)
+        );
+        arrayHours.push({
+          hour: Horas[i],
+          state: response.state,
+        });
+      }
+    }
+    // console.log({ arrayHoursBack });
+    setHours(arrayHours);
+    // console.log({ arrayHours });
+  };
+
+  console.log(hours);
+
   // console.log(reservationList)
-// createReservation({
-  
-//         state:'Reservado',
-//         toName:'Ricardo',
-//         start:'Fri Feb 03 2023 17:03:05 GMT-0500 (hora estándar de Perú)',
-//         end:'Fri Feb 03 2023 18:03:05 GMT-0500 (hora estándar de Perú)'
-    
-// })
+  // createReservation({
+
+  //         state:'Reservado',
+  //         toName:'Ricardo',
+  //         start:'Fri Feb 03 2023 17:03:05 GMT-0500 (hora estándar de Perú)',
+  //         end:'Fri Feb 03 2023 18:03:05 GMT-0500 (hora estándar de Perú)'
+
+  // })
 
   return (
     <TableContainer component={Paper} sx={{ maxHeight: 850 }}>
-      <Table sx={{ minWidth: 300, }} aria-label='simple table'>
+      <Table sx={{ minWidth: 300 }} aria-label='simple table'>
         <TableHead>
           <TableRow>
             {columns.map((columns) => (
@@ -103,7 +104,7 @@ export const TableroHorarioDia = ({ data, columns }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Horas.map((Hora, horaInt) => {
+          {hours.map((Hora, horaInt) => {
             if (horaInt > 6 && horaInt !== 23)
               return (
                 <TableRow
@@ -112,7 +113,7 @@ export const TableroHorarioDia = ({ data, columns }) => {
                 >
                   {
                     <TableCell align='center' component='th' scope='row'>
-                      {Hora} - {Horas[horaInt + 1]}
+                      {Hora.hour} - {Horas[horaInt + 1]}
                     </TableCell>
                   }
                   <TableCell align='center'>
@@ -123,18 +124,18 @@ export const TableroHorarioDia = ({ data, columns }) => {
                         color: 'white',
                         width: 150,
                         background:
-                          Estado === 'Deshabilitado'
+                          Hora.state === 'Deshabilitado'
                             ? '#f50057'
-                            : Estado === 'Reservado'
+                            : Hora.state === 'Reservado'
                             ? '#0276aa'
                             : '#00e676',
                       }}
                     >
-                      {Estado}
+                      {Hora.state}
                     </Button>
                   </TableCell>
 
-                  {columns.map((columns) => {
+                  {columns.map((columns, idx) => {
                     if (columns.actions)
                       return (
                         <TableCell
@@ -144,7 +145,10 @@ export const TableroHorarioDia = ({ data, columns }) => {
                         >
                           {columns.actions.map((Actions, index) => (
                             <React.Fragment key={index}>
-                              <Actions props={horaInt} status={Estado} />
+                              <Actions
+                                props={horaInt}
+                                status={hours[horaInt].state}
+                              />
                             </React.Fragment>
                           ))}
                         </TableCell>
@@ -153,10 +157,11 @@ export const TableroHorarioDia = ({ data, columns }) => {
                   })}
                 </TableRow>
               );
-              else return null;
+            else return null;
           })}
         </TableBody>
       </Table>
+      <button onClick={() => setHoursAlgorithem()}>Clik me</button>
     </TableContainer>
   );
 };

@@ -30,11 +30,9 @@ export const useReservation = () => {
 
   useEffect(() => {
     if (reservationList.length === 0) return;
-    // ⛔️ React Hook useEffect has a missing dependency: 'obj'.
-    // Either include it or remove the dependency array. eslintreact-hooks/exhaustive-deps
+
     filterReservations();
-    // ⛔️ React Hook useEffect has a missing dependency: 'obj'.
-    // Either include it or remove the dependency array. eslintreact-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reservationList]);
 
   const getReservation = async () => {

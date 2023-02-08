@@ -8,12 +8,33 @@ export const useReservation = () => {
   const [reservationListFiltered, setReservationListFiltered] = useState([]);
 
   useEffect(() => {
+    // ⛔️ React Hook useEffect has a missing dependency: 'obj'.
+    // Either include it or remove the dependency array. eslintreact-hooks/exhaustive-deps
     getReservation();
   }, []);
 
+  const filterReservations = () => {
+    let reservations = '2023-02-08';
+    let undeReserva = new Date().toISOString().substring(0, 10);
+    if (reservationList.length !== 0)
+      setReservationListFiltered(
+        reservationList.filter((fecha) =>
+          fecha.start
+            .substring(0, 10)
+            .includes(
+              reservations ? reservations.toString() : undeReserva.toString()
+            )
+        )
+      );
+  };
+
   useEffect(() => {
     if (reservationList.length === 0) return;
+    // ⛔️ React Hook useEffect has a missing dependency: 'obj'.
+    // Either include it or remove the dependency array. eslintreact-hooks/exhaustive-deps
     filterReservations();
+    // ⛔️ React Hook useEffect has a missing dependency: 'obj'.
+    // Either include it or remove the dependency array. eslintreact-hooks/exhaustive-deps
   }, [reservationList]);
 
   const getReservation = async () => {
@@ -64,20 +85,6 @@ export const useReservation = () => {
     }
   };
 
-  const filterReservations = () => {
-    let reservations = '2023-02-08';
-    let undeReserva = new Date().toISOString().substring(0, 10);
-    if (reservationList.length !== 0)
-      setReservationListFiltered(
-        reservationList.filter((fecha) =>
-          fecha.start
-            .substring(0, 10)
-            .includes(
-              reservations ? reservations.toString() : undeReserva.toString()
-            )
-        )
-      );
-  };
   return {
     reservationList,
     isFetching,

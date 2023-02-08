@@ -11,18 +11,20 @@ export const EncabezadoPerfil = ({ imagen, titulo, contenido, avatar }) => {
         <Box
           sx={{
             ...headerStyle,
-            backgroundImage: `url(${imagen})`,
-            height: { xs: '25vh', sm: '35vh', md: '50vh' },
-            justifyContent: { md: 'start', sm: 'center', xs: 'center' },
+            backgroundImage:`linear-gradient(190deg, #212121  10%, rgba(0, 0, 0, 0.25)80%), url(${imagen});`,
+            // height: { xs: '25vh', sm: '35vh', md: '50vh' },
+            
+            alignItems:'center',
+            justifyContent: { md: 'center', sm: 'center', xs: 'center' },
           }}
         >
-          <Box sx={{ marginTop: { xs: 5, sm: 6, md: 25 } }}>
+          <Box >
             <div style={{ justifyContent: 'space-between' }}>
               <Box
                 sx={{
-                  textAlign: { md: 'start', sm: 'center', xs: 'center' },
-                  marginY: 2,
-                  marginLeft: { md: 40 },
+                  textAlign: { md: 'center', sm: 'center', xs: 'center' },
+                  marginY: {xs:10,md:15},
+                  // marginLeft: { md: 40 },
                 }}
               >
                 <Typography variant='h2'>{titulo}</Typography>
@@ -57,7 +59,7 @@ export const EncabezadoPerfil = ({ imagen, titulo, contenido, avatar }) => {
                 src={
                   avatar
                     ? avatar
-                    : 'https://imgmedia.elpopular.pe/640x345/elpopular/original/2022/10/16/634c017d3b29104a0834810c.webp'
+                    : ''
                 }
               ></Avatar>
             </div>

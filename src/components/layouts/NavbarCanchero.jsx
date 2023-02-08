@@ -29,6 +29,7 @@ export const NavbarCanchero = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const { user } = useContext(AuthUserContext);
 
   return (
     <>
@@ -84,7 +85,7 @@ export const NavbarCanchero = () => {
                   <Avatar
                     sx={{ width: 40, height: 40 }}
                     alt='Remy Sharp'
-                    src='https://imgmedia.elpopular.pe/640x345/elpopular/original/2022/10/16/634c017d3b29104a0834810c.webp'
+                    src={user?.avatar}
                   />
                 </IconButton>
               </Tooltip>

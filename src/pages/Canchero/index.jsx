@@ -30,7 +30,7 @@ export const DashBoardCanchero = () => {
         >
           <div style={{ justifyContent: 'space-between' }}>
             <TextoPortada
-              titulo={'!Bienvenido Canchero!'}
+              titulo={'!BIENVENIDO CANCHERO !'}
               contenido={
                 'Aquí podras encontrar todas tus canchas y modificar tus horarios'
               }

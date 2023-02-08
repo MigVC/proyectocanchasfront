@@ -66,7 +66,7 @@ export const TableroDias = ({habilitado,rows,setDia,dia,columns}) => {
   return (
     <>
     <Box
-      sx={{ maxWidth: { xs: 400, sm: 750 },bgcolor: 'background.paper',}}
+      sx={{ maxWidth: { xs: 400, sm: 650,md:600 },bgcolor: 'background.paper',}}
     >
       <Tabs
         orientation='horizontal'

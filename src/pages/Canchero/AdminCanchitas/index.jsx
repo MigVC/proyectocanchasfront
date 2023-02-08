@@ -17,15 +17,15 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { headerStyle, style } from '../../../theme/style';
 import {TextoCentrado} from '../../../components/common/TextoCentrado'
 import { HorarioContext } from '../../../context/HorarioContext';
-import EditIcon from '@mui/icons-material/Edit';
+
 import { FormUpdateCanchita } from './components/FormUpdateCanchita';
 import { TextoHeader } from '../../../components/common/TextoHeader';
 import { PieHome } from '../../../components/layouts/PieHome';
-import GarageIcon from '@mui/icons-material/Garage';
-import SavingsIcon from '@mui/icons-material/Savings';
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
+
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import InsightsIcon from '@mui/icons-material/Insights';
+import { CardIr } from '../../../components/common/CardIr';
+import { CardCanchita } from '../../../components/common/CardCanchita';
 const rows = [
   {
     id:'Lunes',
@@ -194,55 +194,24 @@ export const TableroCanchita = () => {
               </Grid>
               <Grid item xs={12} sm={12} md={4}  
               >
-                <RigthBar/>
+                
+                
                 <Grid sx={{display:'flex' ,justifyContent:'center',alignItems:'center'}} item xs={12} md={12} >
-                <Paper sx={{p:2, marginBottom:5}}>
-              <Grid container spacing={2}>
                 
-                <Grid item xs={12} sx={{display:'flex' ,justifyContent:'center',alignItems:'center'}}>
-                
-                </Grid>
-                <Grid item xs={12}  sx={{display:'flex' ,justifyContent:'center',alignItems:'center', textAlign:'center'}}>
-                <Typography sx={{fontFamily:style.typography,fontSize:14, fontWeight:400, color:'gray'}}>
-                  La canchita esta en perfectas condiciones Contamos con baños limpios Tienda y Barra Alquilamos polos, pelotas, etc.
-                </Typography>
-              </Grid>
-                <Grid item xs={6} sx={{display:'flex' ,justifyContent:'end',alignItems:'center',}}>
-                  <Typography sx={{fontFamily:style.typography,}}>
-                    <SavingsIcon sx={{color:'gray'}}/> S/.60
-                  </Typography>
-              </Grid>
-                <Grid item  xs={6}sx={{display:'flex' ,justifyContent:'start',alignItems:'center'}}>
-                <Typography sx={{fontFamily:style.typography,}}>
-                <GarageIcon sx={{color:'gray'}}/> 8
-              </Typography >
-                </Grid>
-                <Grid item xs={12}sx={{display:'flex' ,justifyContent:'center',alignItems:'center'}}>
-                <Typography sx={{fontFamily:style.typography,}}>
-                <FmdGoodIcon sx={{color:'gray'}}/> Av Los Geraneos 113
-              </Typography>
-                </Grid>
-                <Grid item xs={12}sx={{display:'flex' ,justifyContent:'center',alignItems:'center'}}>
-                <Tooltip
-                  title='Editar Canchita'
-                  aria-label='editar'>
-                  <Button sx={{fontFamily:style.typography,}} variant='contained' onClick={() => setOpen(true)}>
-                    Editar <EditIcon style={{marginLeft:3,width:15,height:15}}/>
-                  </Button>
-                </Tooltip>
-                </Grid>
-                
-                
-              </Grid>
-              </Paper>
-              
+              <CardCanchita
+                open={open} setOpen={setOpen}
+              />
             </Grid>
-            <Paper sx={{p:2}}>
-              <Grid sx={{display:'flex' ,justifyContent:'center',alignItems:'center'}}  container >
-                  <img src='https://i.pinimg.com/originals/70/79/44/70794492c24ea5cf20bcb0605e79d83f.jpg' width={250}  />
-                </Grid>
-              </Paper>
+            
+              <CardIr
+                 titulo={'CANCHITAS'}
+                 button={'Ir'}
+                 encabezado={'VER TODAS TUS'}
+                 link={'/canchero'}
+                />
+                <RigthBar/>
               </Grid>
+              
             </Grid>
           </Box>
         </>

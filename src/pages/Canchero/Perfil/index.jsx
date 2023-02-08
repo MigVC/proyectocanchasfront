@@ -14,7 +14,7 @@ import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded';
 import ContactEmergencyRoundedIcon from '@mui/icons-material/ContactEmergencyRounded';
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
-import Perfil2 from '../../../assets/images/Perfil5.jpg';
+import Perfil2 from '../../../assets/images/Canchero.jpg';
 import { TextoCentrado } from '../../../components/common/TextoCentrado';
 import { EncabezadoPerfil } from './components/EncabezadoPerfil';
 import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
@@ -22,7 +22,7 @@ import { CardIr } from '../../../components/common/CardIr';
 import { FormUpdatePerfil } from './components/FormUpdatePerfil';
 import { style } from '../../../theme/style';
 import { AuthUserContext } from '../../../context/AuthUserContext';
-
+import {PieHome} from '../../../components/layouts/PieHome'
 export const CancheroPerfil = () => {
   const [open, setOpen] = useState(false);
   const { user } = useContext(AuthUserContext);
@@ -95,7 +95,7 @@ export const CancheroPerfil = () => {
       </Box>
       <Box
         sx={{
-          backgroundColor: 'rgb(244, 229, 194,0.2)',
+          backgroundColor: 'rgb(244, 229, 194,0.1)',
           fontFamily: 'Montserrat',
           color: '#323232',
           marginTop: 3,
@@ -171,11 +171,11 @@ export const CancheroPerfil = () => {
         </Grid>
       </Box>
       <TextoCentrado
-        encabezado={'Trabajamos por brindarte la mejor experiencia'}
+        encabezado={'MUY PRONTO NUEVAS FUNCIONALIDADES'}
         titulo={'CANCHITAS CUSCO'}
         contenido={'Gracias por tu preferencia'}
       />
-
+      <PieHome/>
       <Outlet />
     </Box>
   );

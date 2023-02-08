@@ -14,7 +14,7 @@ export const useReservation = () => {
   }, []);
 
   const filterReservations = () => {
-    let reservations = '2023-02-08';
+    let reservations = new Date().toISOString().substring(0, 10);
     let undeReserva = new Date().toISOString().substring(0, 10);
     if (reservationList.length !== 0)
       setReservationListFiltered(

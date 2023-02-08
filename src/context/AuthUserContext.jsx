@@ -98,7 +98,6 @@ export const AuthUserProvider = ({ children }) => {
 
   const signUp = async (userData) => {
     try {
-      console.log({ userData });
       const { data } = await cancheroRequest.post(
         '/auth/canchero/signup',
         userData
@@ -117,7 +116,6 @@ export const AuthUserProvider = ({ children }) => {
       });
       window.localStorage.setItem('tokenCanchero', data.token.authToken);
     } catch (error) {
-      console.log('Im in erro');
       swal({
         title: 'Error',
         icon: 'error',

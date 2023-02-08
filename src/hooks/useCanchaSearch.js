@@ -23,8 +23,6 @@ export const useCanchaSearch = () => {
     }
   };
 
-  console.log({ timeSearch });
-
   useEffect(() => {
     loadCanchas();
   }, []);

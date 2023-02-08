@@ -50,7 +50,6 @@ export const FormUpdatePerfil = () => {
   const onSubmit = async (data) => {
     try {
       const imagesData = await handleMultiple(filesUploads);
-      console.log(imagesData);
       const formData = {
         nombres: data.nombres === '' ? user.nombres : data.nombres,
         apellidos: data.apellidos === '' ? user.apellidos : data.apellidos,

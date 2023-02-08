@@ -27,7 +27,6 @@ export const CancheroPerfil = () => {
   const [open, setOpen] = useState(false);
   const { user } = useContext(AuthUserContext);
 
-  console.log({ user });
   return (
     <Box>
       <EncabezadoPerfil

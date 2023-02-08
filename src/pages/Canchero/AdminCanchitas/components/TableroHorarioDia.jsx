@@ -12,7 +12,7 @@ import {
 import { useReservation } from '../../../../hooks/useReservation';
 
 export const TableroHorarioDia = ({ data, columns }) => {
-  const { reservationList, createReservation, reservationListFiltered } =
+  const { reservationListFiltered } =
     useReservation();
 
   const [hours, setHours] = useState([]);
@@ -44,12 +44,11 @@ export const TableroHorarioDia = ({ data, columns }) => {
   ];
   useEffect(() => {
     setHoursAlgorithem();
-  }, [reservationListFiltered]);
+  }, []);
 
   const setHoursAlgorithem = () => {
     let arrayHoursBack = [];
     let arrayHours = [];
-    console.log(reservationListFiltered);
     for (let j = 0; j < reservationListFiltered.length; j++) {
       arrayHoursBack.push(reservationListFiltered[j].start.substring(11, 13));
     }
@@ -70,22 +69,10 @@ export const TableroHorarioDia = ({ data, columns }) => {
         });
       }
     }
-    // console.log({ arrayHoursBack });
+
     setHours(arrayHours);
-    // console.log({ arrayHours });
+
   };
-
-  console.log(hours);
-
-  // console.log(reservationList)
-  // createReservation({
-
-  //         state:'Reservado',
-  //         toName:'Ricardo',
-  //         start:'Fri Feb 03 2023 17:03:05 GMT-0500 (hora estándar de Perú)',
-  //         end:'Fri Feb 03 2023 18:03:05 GMT-0500 (hora estándar de Perú)'
-
-  // })
 
   return (
     <TableContainer component={Paper} sx={{ maxHeight: 850 }}>

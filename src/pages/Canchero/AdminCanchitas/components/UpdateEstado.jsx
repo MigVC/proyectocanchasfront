@@ -1,17 +1,9 @@
-import {
-  Button,
-  DialogActions,
-  Grid,
-  IconButton,
-  InputAdornment,
-  Modal,
-  Typography,
-} from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import { Button, Grid, IconButton, Modal, Typography } from '@mui/material';
+import React, { useContext, useState } from 'react';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+
 import SaveIcon from '@mui/icons-material/Save';
-import { Box } from '@mui/system';
+
 import { TextField } from '@mui/material';
 import { style } from '../../../../theme/style';
 import { useForm } from 'react-hook-form';
@@ -34,21 +26,16 @@ const stados = [
 ];
 export const TableActionsCanchero = ({ props, status }) => {
   const [open, setOpen] = useState(false);
-  const [reservado, setReservado] = useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm({});
-  const { setHorario, fecha } = useContext(HorarioContext);
+  const { fecha } = useContext(HorarioContext);
   const {
-    reservationList,
     createReservation,
-    filterReservations,
-    reservationListFiltered,
   } = useReservation();
 
   const Fecha = new Date(fecha);
@@ -56,7 +43,6 @@ export const TableActionsCanchero = ({ props, status }) => {
   Fecha.setHours(props);
 
   const onSubmit = async (data) => {
-    // console.log({ data });
     const formData = {
       toName: data.usuario,
       start: `${new Date(Fecha).toISOString().substring(0, 10)} ${new Date(
@@ -72,16 +58,9 @@ export const TableActionsCanchero = ({ props, status }) => {
       state: data.status,
     };
     await createReservation(formData);
-    console.log(Fecha);
-    console.log({ formData});
-    // console.log(reservationList);
     setOpen(false);
   };
 
-  // console.log({ reservationListFiltered });
-  // console.log(reservado)
-
-  // console.log(reservado)
   return (
     <>
       <IconButton onClick={handleOpen}>
@@ -196,7 +175,6 @@ export const TableActionsCanchero = ({ props, status }) => {
                         type='submit'
                         startIcon={<SaveIcon />}
                         variant='contained'
-                        // onClick={e=>e.preventDefault(console.log(props))}
                       >
                         GUARDAR
                       </Button>

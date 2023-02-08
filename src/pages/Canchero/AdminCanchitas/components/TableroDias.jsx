@@ -1,17 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { TableroHorarioDia } from './TableroHorarioDia';
-import dayjs from 'dayjs';
 import { HorarioContext } from '../../../../context/HorarioContext';
 
 function TabPanel(props) {
   const { habilitado, row, columns, value, index } = props;
   const { fecha } = useContext(HorarioContext);
-  // console.log(fecha)
-  // console.log(new Date() )
   return (
     <div role='tabpanel' hidden={value !== index}>
       {value === index && (

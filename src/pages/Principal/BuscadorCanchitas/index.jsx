@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { SearchBar } from './components/SearchBar';
 import { Feed } from './components/Feed';
@@ -9,7 +9,7 @@ import { useCanchaSearch } from '../../../hooks/useCanchaSearch';
 import { PieHome } from '../../../components/layouts/PieHome';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 export const DashBoard = () => {
-  const { isFetching, canchaList, timeSearch } = useCanchaSearch();
+  const { canchaList } = useCanchaSearch();
   const [canchaFiltered, setCanchaFiltered] = useState([]);
   const [term, setTerm] = useState('');
   
@@ -17,7 +17,6 @@ export const DashBoard = () => {
     if (term.length === 0) {
       return setCanchaFiltered([]);
     }
-    console.log(canchaFiltered)
     console.log(isNaN(Number(term)));
     setCanchaFiltered(
       canchaList.filter(

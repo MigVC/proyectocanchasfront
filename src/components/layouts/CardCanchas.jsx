@@ -27,7 +27,6 @@ export const CardCanchas = ({
   link,
   id,
 }) => {
-  console.log({image});
   return (
     <Card
       sx={{

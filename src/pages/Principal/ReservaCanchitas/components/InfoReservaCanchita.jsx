@@ -5,10 +5,7 @@ import { HorarioContext } from '../../../../context/HorarioContext';
 import InfoIcon from '@mui/icons-material/Info';
 import { Jugador } from '../../../../assets/icons/jugador';
 import { JugadorTriste } from '../../../../assets/icons/jugadorTriste';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import { Canchero } from '../../../../assets/icons/canchero';
-import FondoCanchero from '../../../../assets/images/pagina.jpg';
-import { useReservation } from '../../../../hooks/useReservation';
 
 export const InfoReservaCanchita = ({ status }) => {
   const [open, setOpen] = useState(false);
@@ -16,7 +13,6 @@ export const InfoReservaCanchita = ({ status }) => {
   const handleClose = () => setOpen(false);
   const { fecha } = useContext(HorarioContext);
   const Fecha = new Date(fecha);
-  console.log({ status });
 
   return (
     <>

@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import cancheroRequest from '../api/apiRequest';
-import { HorarioContext } from '../context/HorarioContext';
+
 export const useReservation = () => {
   const [isFetching, setIsFetching] = useState(true);
   const [reservationList, setReservationList] = useState([]);

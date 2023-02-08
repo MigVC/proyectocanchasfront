@@ -58,6 +58,7 @@ export const DashBoardCanchero = () => {
                       <Loading />
                     </div>
                   ) : (
+                    
                     canchasList.map((value, index) => (
                       <Grid key={value.id} item>
                         <CardCanchas
@@ -78,6 +79,13 @@ export const DashBoardCanchero = () => {
                       </Grid>
                     ))
                   )}
+                  {canchasList.length===0 && 
+                  <>
+                  <Box sx={{display:'flex',justifyContent:'center',alignContent:'center',marginTop:-4}}>
+                    <TextoCentrado contenido={'Tus canchitas se mostraran aquí'} />
+                  </Box>
+                  </>
+                  }
                 </Grid>
               </Grid>
             </Grid>

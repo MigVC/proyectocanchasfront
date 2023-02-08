@@ -43,7 +43,7 @@ export const NavbarCanchero = () => {
                     sx={{  display: { xs: 'none', md: 'flex' ,}, }}
                 >
                     <Link to={Page[0].link}>
-                      <img  src={LogoCanchero} style={{display: { xs: 'none', md: 'flex' ,}}} height={30} width={190} />
+                      <img  src={LogoCanchero} style={{display: { xs: 'none', md: 'flex' ,}}} height={30} width={210} />
                     </Link>
                 </Button>
                 </Box>

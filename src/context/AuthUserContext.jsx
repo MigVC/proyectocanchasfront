@@ -68,6 +68,12 @@ export const AuthUserProvider = ({ children }) => {
         password,
       });
 
+      swal({
+        title: 'Cancha registrada',
+        icon: 'success',
+        buttons: 'OK',
+      });
+
       dispatch({
         type: 'signUp',
         payload: {
@@ -77,6 +83,41 @@ export const AuthUserProvider = ({ children }) => {
       });
       window.localStorage.setItem('tokenCanchero', data.token.authToken);
     } catch (error) {
+      swal({
+        title: 'Error',
+        icon: 'error',
+        text: error.response.data.message,
+        buttons: 'OK',
+      });
+      dispatch({
+        type: 'addError',
+        payload: error.response.data.message || 'Información incorrecta',
+      });
+    }
+  };
+
+  const signUp = async (userData) => {
+    try {
+      console.log({ userData });
+      const { data } = await cancheroRequest.post(
+        '/auth/canchero/signup',
+        userData
+      );
+      swal({
+        title: 'Cancha registrada',
+        icon: 'success',
+        buttons: 'OK',
+      });
+      dispatch({
+        type: 'signUp',
+        payload: {
+          token: data.token.authToken,
+          user: data.canchero,
+        },
+      });
+      window.localStorage.setItem('tokenCanchero', data.token.authToken);
+    } catch (error) {
+      console.log('Im in erro');
       swal({
         title: 'Error',
         icon: 'error',
@@ -105,6 +146,7 @@ export const AuthUserProvider = ({ children }) => {
         ...state,
         signIn,
         logOut,
+        signUp,
         removeError,
       }}
     >

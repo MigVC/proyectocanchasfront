@@ -8,7 +8,7 @@ import { headerStyle } from '../../../theme/style';
 import { useCanchaSearch } from '../../../hooks/useCanchaSearch';
 
 export const DashBoard = () => {
-  const { isFetching, canchaList } = useCanchaSearch();
+  const { isFetching, canchaList, timeSearch } = useCanchaSearch();
   const [canchaFiltered, setCanchaFiltered] = useState([]);
   const [term, setTerm] = useState('');
 
@@ -33,17 +33,18 @@ export const DashBoard = () => {
           cancha.description
             .toLocaleLowerCase()
             .includes(term.toLocaleLowerCase()) |
-          cancha.precioHora.toString()
+          cancha.precioHora
+            .toString()
             .toLocaleLowerCase()
             .includes(term.toLocaleLowerCase()) |
-          cancha.cantAparcamiento.toString()
+          cancha.cantAparcamiento
+            .toString()
             .toLocaleLowerCase()
             .includes(term.toLocaleLowerCase())
       )
     );
   }, [term]);
 
-  console.log({ term });
   return (
     <div className='background'>
       <Box>

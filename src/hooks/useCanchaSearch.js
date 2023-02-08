@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { publicRequest } from '../api/apiRequest';
 import swal from 'sweetalert';
+import dayjs from 'dayjs';
 
 export const useCanchaSearch = () => {
   const [isFetching, setIsFetching] = useState(true);
   const [canchaList, setCanchaList] = useState([]);
+  const [timeSearch, setTimeSearch] = useState(dayjs('2022-04-07'));
 
   const loadCanchas = async () => {
     try {
@@ -21,7 +23,7 @@ export const useCanchaSearch = () => {
     }
   };
 
-  console.log({ canchaList });
+  console.log({ timeSearch });
 
   useEffect(() => {
     loadCanchas();
@@ -30,5 +32,7 @@ export const useCanchaSearch = () => {
   return {
     isFetching,
     canchaList,
+    timeSearch,
+    setTimeSearch,
   };
 };

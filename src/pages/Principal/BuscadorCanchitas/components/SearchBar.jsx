@@ -12,13 +12,11 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import { useCanchaSearch } from '../../../../hooks/useCanchaSearch';
 
 export const SearchBar = ({ searcher }) => {
   const [value, setValue] = React.useState(dayjs().toDate());
-  const [timePickerValue, setTimePickerValue] = React.useState(
-    dayjs('2022-04-07')
-  );
-
+  const { timeSearch, setTimeSearch } = useCanchaSearch();
   return (
     <div>
       <Paper
@@ -78,10 +76,10 @@ export const SearchBar = ({ searcher }) => {
                 '& .MuiSvgIcon-root': {},
               },
             }}
-            value={timePickerValue}
+            value={timeSearch}
             minTime={dayjs().hour('20:00')}
             maxTime={dayjs().hour('21:00')}
-            onChange={(newValue) => setTimePickerValue(newValue)}
+            onChange={(newValue) => setTimeSearch(newValue)}
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>

@@ -149,8 +149,9 @@ export const TableroCanchita = () => {
 
 
       <Box >
-        <Box sx={{background:`linear-gradient(190deg, #212121  10%, rgba(0, 0, 0, 0.5)80%), url(${Perfil4});`,backgroundRepeat:'no-repeat',backgroundSize:'cover',display:'flex' ,justifyContent:'center',alignItems:'center',marginTop:-2}}>
-          <TextoHeader
+        <Box sx={{display:'flex' ,justifyContent:'center',alignItems:'center',marginTop:-2}}>
+          <TextoCentrado
+          encabezado={'CANCHITA'}
           titulo={'EL GOLAZO'}
           />
         </Box>

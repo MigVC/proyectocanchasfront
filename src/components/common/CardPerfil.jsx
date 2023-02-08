@@ -1,12 +1,10 @@
 import { Box} from '@mui/material'
 import React from 'react'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import imagen from '../../assets/images/Registro.jpg'
 import { themeTypographyCard } from '../../theme/style';
-const theme = createTheme();
-
 
 export const CardPerfil = ({encabezado,titulo,avatar,nombreCanchero,descripcion,contenido}) => {
   return (

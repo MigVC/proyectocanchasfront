@@ -1,19 +1,11 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Fab, Modal, Tooltip, Zoom } from '@mui/material';
 import React, { useState } from 'react';
-import MuiAlert from '@mui/material/Alert';
 import { style } from '../../theme/style';
 import { Agregar } from '../../pages/Canchero/components/FormAgregar';
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
-});
 export const ButtonAgregar = () => {
   const [open, setOpen] = useState(false);
-
-  const closeModal = (eventClose) => {
-    setOpen(eventClose);
-  };
 
   return (
     <>

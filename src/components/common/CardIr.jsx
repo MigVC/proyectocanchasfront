@@ -3,7 +3,6 @@ import React from 'react'
 import { ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import { buttonStyle, style, themeTypographyCard } from '../../theme/style';
 import {Canchita}  from '../../assets/icons/canchita';
 import imagen from '../../assets/images/Perfil.jpg'
@@ -17,8 +16,7 @@ export const CardIr = ({encabezado,titulo,button,link}) => {
       <Typography variant="h3">{encabezado}</Typography>
       <Typography variant="h1">{titulo}</Typography>
       
-      
-      {/* <AdminPanelSettingsOutlinedIcon  sx={{marginY:2,color:style.color.alternate ,width:60,height:60}}/> */}
+
       <Canchita color={'#fffde7'}/>
       
       <Typography>

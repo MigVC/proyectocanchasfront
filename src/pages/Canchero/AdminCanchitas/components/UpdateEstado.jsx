@@ -1,5 +1,5 @@
 import { Button, DialogActions, Grid, IconButton, InputAdornment, Modal, Typography } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import SaveIcon from '@mui/icons-material/Save';
@@ -10,6 +10,7 @@ import {
 import { style } from '../../../../theme/style';
 import { useForm } from 'react-hook-form';
 import { HorarioContext } from '../../../../context/HorarioContext';
+import { useReservation } from '../../../../hooks/useReservation';
 
 const stados = [
   {
@@ -28,26 +29,44 @@ const stados = [
 ];
 export const TableActionsCanchero = ({props,status}) => {
     const [open, setOpen] = useState(false);
-    const [reservado, setReservado] = useState('');
+    const [reservado, setReservado] = useState([]);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm({})
     const { setHorario, fecha } = useContext(HorarioContext);
+    const {reservationList,createReservation}=useReservation()
+  // console.log(reservationList[0])
     const Fecha=new Date(fecha)
-    Fecha.setHours(props)
-    const onSubmit = (data) => {
+    // console.log(reservationList)
+    // Fecha.setHours(props)
+    const onSubmit = async(data) => {
       const formData = {
-          usuario:data.usuario,
+          toName:data.usuario,
           start: new Date(Fecha),
           end: new Date(Fecha.setHours(props+1)),
           state: data.status ,
       }
+      await createReservation(formData)
       console.log(formData)
+      console.log(reservationList)
       setOpen(false)
       
       
     }
-    console.log(reservado)
+    useEffect(() => {
+      setReservado(
+        reservationList.filter(
+          (fecha)=>
+          fecha.start
+          .includes(Fecha.toString())
+        )
+      );
+    
+      
+    }, [fecha])
+    // console.log(reservado)
+    
+    // console.log(reservado)
   return (
     <>
     <IconButton onClick={handleOpen} >

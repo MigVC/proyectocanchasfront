@@ -9,6 +9,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import { useReservation } from '../../../../hooks/useReservation';
 
 export const TableroHorarioDia = ({ data, columns }) => {
   const Horas = [
@@ -74,6 +75,17 @@ export const TableroHorarioDia = ({ data, columns }) => {
   //   mock.map((data)=>console.log(new Date(data.start)))
   // }
   const Estado = 'Disponible';
+  const {reservationList,createReservation}=useReservation()
+  // console.log(reservationList)
+// createReservation({
+  
+//         state:'Reservado',
+//         toName:'Ricardo',
+//         start:'Fri Feb 03 2023 17:03:05 GMT-0500 (hora estándar de Perú)',
+//         end:'Fri Feb 03 2023 18:03:05 GMT-0500 (hora estándar de Perú)'
+    
+// })
+
   return (
     <TableContainer component={Paper} sx={{ maxHeight: 850 }}>
       <Table sx={{ minWidth: 400, }} aria-label='simple table'>

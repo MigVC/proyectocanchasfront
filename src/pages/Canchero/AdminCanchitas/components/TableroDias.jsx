@@ -11,8 +11,8 @@ import { HorarioContext } from '../../../../context/HorarioContext';
 function TabPanel(props) {
   const { habilitado,row,columns, value, index} = props;
   const { setHorario, fecha } = useContext(HorarioContext);
-  console.log(fecha)
-  console.log(new Date() )
+  // console.log(fecha)
+  // console.log(new Date() )
   return (
     <div
       role="tabpanel"

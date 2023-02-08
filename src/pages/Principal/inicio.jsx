@@ -1,13 +1,12 @@
-import { Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { TextoCentrado } from '../../components/common/TextoCentrado'
+
 import { TextoInfo } from '../../components/common/TextoInfo'
 import { TextoPortada } from '../../components/common/TextoPortada'
 import { TextoPortadaBlack } from '../../components/common/TextoPortadaBlack'
 import { TextoPrincipal } from '../../components/common/TextoPrincipal'
 import { PieHome } from '../../components/layouts/PieHome'
-import WifiIcon from '@mui/icons-material/Wifi';
+
 import FondoPrincipal2 from '../../assets/images/FondoPrincipal2.jpg'
 export const HomeScreen = () => {
   return (

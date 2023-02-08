@@ -1,4 +1,4 @@
-import { Box, Button, Card, Grid, Tooltip, Typography } from '@mui/material'
+import { Box, Button, Grid, Tooltip, Typography } from '@mui/material'
 import React from 'react'
 import { buttonStyle, style } from '../../theme/style'
 import GarageIcon from '@mui/icons-material/Garage';
@@ -13,7 +13,7 @@ export const CardCanchita = ({open, setOpen}) => {
         backgroundSize:'cover', } }>
               <Grid container spacing={2}>
               <Grid sx={{display:'flex' ,justifyContent:'center',alignItems:'center'}}  container >
-                  <img src='https://i.pinimg.com/originals/70/79/44/70794492c24ea5cf20bcb0605e79d83f.jpg' width={250}  />
+                  <img alt='' src='https://i.pinimg.com/originals/70/79/44/70794492c24ea5cf20bcb0605e79d83f.jpg' width={250}  />
                 </Grid>
                 <Grid item xs={12}  sx={{display:'flex' ,justifyContent:'center',alignItems:'center', textAlign:'center'}}>
                 <Typography sx={{fontFamily:style.typography,fontSize:14, fontWeight:400, color:style.color.letra}}>

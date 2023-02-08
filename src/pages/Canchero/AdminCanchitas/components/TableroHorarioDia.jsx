@@ -44,6 +44,7 @@ export const TableroHorarioDia = ({ data, columns }) => {
   ];
   useEffect(() => {
     setHoursAlgorithem();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setHoursAlgorithem = () => {

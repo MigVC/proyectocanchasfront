@@ -37,7 +37,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 export const FormUpdateCanchita = () => {
   const [openAlert, setOpenAlert] = useState(false);
-  const { statusObject, handleMultiple, setStatusObject, setLinks } =
+  const { statusObject, handleMultiple, setStatusObject } =
     useUploadImage();
   const {
     images,
@@ -66,13 +66,13 @@ export const FormUpdateCanchita = () => {
   const onSubmit = async (data) => {
     try {
       handleMultiple(filesUploads);
-      const formData = {
-        nombreCanchita: data.nombreCanchita,
-        descripcion: data.descripcion,
-        ubicacion: data.ubicacion,
-        cantAparcamiento: data.cantAparcamiento,
-        precio: data.precio,
-      };
+      // const formData = {
+      //   nombreCanchita: data.nombreCanchita,
+      //   descripcion: data.descripcion,
+      //   ubicacion: data.ubicacion,
+      //   cantAparcamiento: data.cantAparcamiento,
+      //   precio: data.precio,
+      // };
       setOpenAlert(true);
     } catch (e) {}
   };

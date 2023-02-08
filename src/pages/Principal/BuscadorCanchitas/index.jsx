@@ -44,6 +44,7 @@ export const DashBoard = () => {
             .includes(term.toLocaleLowerCase())
       )
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [term]);
 
   return (

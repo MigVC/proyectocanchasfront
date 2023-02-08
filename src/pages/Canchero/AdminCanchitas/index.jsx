@@ -2,29 +2,27 @@ import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router';
 import Box from '@mui/material/Box';
 import {
-  Button,
+
   Card,
-  CardActions,
+
   CardContent,
   Grid,
-  IconButton,
+
   Modal,
   Paper,
   TextField,
-  Tooltip,
+
   Typography,
 } from '@mui/material';
 import { TableroDias } from './components/TableroDias';
 import { TableActionsCanchero } from './components/UpdateEstado';
 import FondoHorario from '../../../assets/images/FondoHorario.jpg';
-import Perfil4 from '../../../assets/images/Bar.jpg';
-import { TextoPortada } from '../../../components/common/TextoPortada';
+
+
 import { RigthBar } from '../../../components/layouts/RigthBar';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
-import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
-import DateRangeIcon from '@mui/icons-material/DateRange';
+
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { headerStyle, style } from '../../../theme/style';
 import { TextoCentrado } from '../../../components/common/TextoCentrado';
@@ -38,7 +36,7 @@ import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import InsightsIcon from '@mui/icons-material/Insights';
 import { CardIr } from '../../../components/common/CardIr';
 import { CardCanchita } from '../../../components/common/CardCanchita';
-import { useReservation } from '../../../hooks/useReservation';
+
 const rows = [
   {
     id: 'Lunes',
@@ -85,17 +83,15 @@ const columns = [
 ];
 
 export const TableroCanchita = () => {
-  const params = useParams();
+
   const [open, setOpen] = useState(false);
 
-  const closeModal = (eventClose) => {
-    setOpen(eventClose);
-  };
+
   const { setHorario, fecha } = useContext(HorarioContext);
   const [dia, setDia] = React.useState(
     new Date(fecha).getDay() - 1 === -1 ? 6 : new Date(fecha).getDay() - 1
   );
-  const { filterReservations } = useReservation();
+
   return (
     <Box sx={{ fontFamily: 'Montserrat' }}>
       <Box

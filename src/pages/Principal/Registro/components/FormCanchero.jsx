@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Formik } from 'formik';
 
 import swal from 'sweetalert';
-import { Grid, TextField } from '@mui/material';
+import { Grid, Paper, TextField } from '@mui/material';
 import { AuthUserContext } from '../../../../context/AuthUserContext';
 
 export const FormCanchero = () => {
@@ -10,13 +10,13 @@ export const FormCanchero = () => {
   const [gender, setgender] = useState('otro');
   return (
     <div className='animate__animated animate__fadeIn justify-content-center'>
+      <Grid p={2}>
       <Formik
         initialValues={{
           dni: '',
           nombres: '',
           apellidos: '',
           nacimiento: '',
-
           sexo: 'M',
           telefono: '',
           avatar:
@@ -28,7 +28,7 @@ export const FormCanchero = () => {
           description: '',
           ubicacion: '',
           estado: 'opened',
-          cantAparcamiento: 0,
+          
         }}
         onSubmit={async (values, actions) => {
           values.sexo = gender;
@@ -52,8 +52,8 @@ export const FormCanchero = () => {
           isSubmitting,
         }) => (
           <form onSubmit={handleSubmit} className='text-center'>
-            <Grid container spacing={2} p={4}>
-              <Grid item xs={6}>
+            <Grid container spacing={2} p={2}>
+              <Grid item xs={4}>
                 <TextField
                   fullWidth
                   name='dni'
@@ -64,7 +64,7 @@ export const FormCanchero = () => {
                   placeholder='Ingresa tu DNI'
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <TextField
                   fullWidth
                   name='nombres'
@@ -75,7 +75,7 @@ export const FormCanchero = () => {
                   label='Nombres'
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <TextField
                   fullWidth
                   name='apellidos'
@@ -87,7 +87,7 @@ export const FormCanchero = () => {
                 />
               </Grid>
 
-              <Grid item xs={6}>
+              <Grid item xs={12} md={4}>
                 <TextField
                   fullWidth
                   type='date'
@@ -99,7 +99,7 @@ export const FormCanchero = () => {
                   // label='Fecha de nacimiento'
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} md={8}>
                 <label
                   className='text-center'
                   style={{ fontFamily: 'Montserrat' }}
@@ -108,8 +108,9 @@ export const FormCanchero = () => {
                   Sexo{' '}
                 </label>
                 <Grid container>
-                  <Grid item xs={4}>
+                  <Grid item  xs={4}>
                     <input
+                    
                       onChange={() => {
                         setgender('M');
                       }}
@@ -161,30 +162,19 @@ export const FormCanchero = () => {
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <TextField
                   fullWidth
                   name='telefono'
                   onChange={handleChange}
                   type='text'
-                  className='form-control border border-dark'
                   placeholder='Ingresa tu numero de telefono'
                   value={values.telefono}
                   label='Teléfono'
                 />
               </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  name='nombre'
-                  fullWidth
-                  value={values.nombre}
-                  onChange={handleChange}
-                  type='text'
-                  placeholder='Ingresa nombre de la cancha'
-                  label='Nombre de la canchita'
-                />
-              </Grid>
-              <Grid item xs={12}>
+              
+              <Grid item xs={8}>
                 <TextField
                   fullWidth
                   name='correo'
@@ -218,14 +208,25 @@ export const FormCanchero = () => {
                   value={values.passwordConfirmation}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
+                <TextField
+                  name='nombre'
+                  fullWidth
+                  value={values.nombre}
+                  onChange={handleChange}
+                  type='text'
+                  placeholder='Ingresa nombre de tu negocio'
+                  label='Nombre de tu negocio'
+                />
+              </Grid>
+              <Grid item xs={6}>
                 <TextField
                   fullWidth
                   name='ubicacion'
                   onChange={handleChange}
                   type='text'
-                  label='Ubicación'
-                  placeholder='Ingresa tu correo electrónico'
+                  label='Ubicación de tu negocio'
+                  placeholder='Ingresa ubicación de tu negocio'
                   value={values.ubicacion}
                 />
               </Grid>
@@ -233,7 +234,7 @@ export const FormCanchero = () => {
                 <TextField
                   name='description'
                   fullWidth
-                  label='Descripción de la canchita'
+                  label='Descripción de tu negocio'
                   onChange={handleChange}
                   value={values.description}
                   multiline
@@ -241,17 +242,7 @@ export const FormCanchero = () => {
                 />
               </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  name='cantAparcamiento'
-                  onChange={handleChange}
-                  type='number'
-                  label='Espacios para vehiculos'
-                  placeholder='Espacios para vehiculos'
-                  value={values.cantAparcamiento}
-                />
-              </Grid>
+              
               <Grid item xs={12}>
                 <button
                   type='submit'
@@ -266,6 +257,7 @@ export const FormCanchero = () => {
           </form>
         )}
       </Formik>
+      </Grid>
     </div>
   );
 };

@@ -33,7 +33,7 @@ export const SearchBar = ({ searcher }) => {
           {/* <MenuIcon /> */}
         </IconButton>
         <InputBase
-          sx={{ ml: 1, flex: 1 }}
+          sx={{ ml: 1, flex: 1,minWidth:20 }}
           placeholder='Busca tus canchitas'
           inputProps={{ 'aria-label': 'search google maps' }}
           onChange={(e) => searcher(e.target.value)}
@@ -41,10 +41,7 @@ export const SearchBar = ({ searcher }) => {
         <IconButton type='button' sx={{ p: '10px' }} aria-label='search'>
           <SearchIcon />
         </IconButton>
-        <Divider sx={{ m: 0.5 }} orientation='vertical' />
-        <IconButton color='primary' sx={{ p: '10px' }} aria-label='directions'>
-          {/* <DirectionsIcon /> */}
-        </IconButton>
+        
         <Divider sx={{ m: 0.5 }} orientation='vertical' />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DesktopDatePicker

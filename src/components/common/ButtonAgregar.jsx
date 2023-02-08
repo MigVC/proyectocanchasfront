@@ -29,7 +29,7 @@ export const ButtonAgregar = () => {
         </Tooltip>
       </Zoom>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <div style={{ ...style.modal, width: 600, height: 600 }}>
+        <div style={{ ...style.modal, width: 600, height: 700 }}>
           <Agregar setOpen={setOpen} closeModal={(state) => setOpen(state)} />
         </div>
       </Modal>

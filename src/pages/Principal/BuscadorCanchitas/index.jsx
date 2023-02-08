@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { SearchBar } from './components/SearchBar';
 import { Feed } from './components/Feed';
@@ -7,16 +7,17 @@ import { TextoCentrado } from '../../../components/common/TextoCentrado';
 import { headerStyle } from '../../../theme/style';
 import { useCanchaSearch } from '../../../hooks/useCanchaSearch';
 import { PieHome } from '../../../components/layouts/PieHome';
-
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 export const DashBoard = () => {
   const { isFetching, canchaList, timeSearch } = useCanchaSearch();
   const [canchaFiltered, setCanchaFiltered] = useState([]);
   const [term, setTerm] = useState('');
-
+  
   useEffect(() => {
     if (term.length === 0) {
       return setCanchaFiltered([]);
     }
+    console.log(canchaFiltered)
     console.log(isNaN(Number(term)));
     setCanchaFiltered(
       canchaList.filter(
@@ -76,7 +77,18 @@ export const DashBoard = () => {
               'aquí tenemos solo calidad, recuerde verificar la ubicación y hora de la canchita que desea alquilar'
             }
           />
-          <Feed canchaList={term.length === 0 ? canchaList : canchaFiltered} />
+          {(term.length === 0 ? canchaList : canchaFiltered).length===0?
+          <>
+          <Box sx={{display:'flex',justifyContent:'center',alignContent:'center'}}>
+            <SentimentVeryDissatisfiedIcon sx={{width:50,height:50,color:'gray'}}/>
+          </Box>
+          <Box sx={{display:'flex',justifyContent:'center',alignContent:'center',marginTop:-4}}>
+            <TextoCentrado contenido={'No se encontraron Canchitas'} />
+          </Box>
+          </>
+          :
+          <Feed canchaList={term.length === 0 ? canchaList : canchaFiltered} />}
+          
         </Box>
       </Box>
       <PieHome/>

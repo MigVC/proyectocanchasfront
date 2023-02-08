@@ -131,6 +131,33 @@ export const AuthUserProvider = ({ children }) => {
     }
   };
 
+  const updateCanchero = async (canchero) => {
+    try {
+      await cancheroRequest.put(
+        '/api/canchero',
+        canchero
+      );
+      swal({
+        title: 'Canchero editado',
+        text: 'Vuelva a loguearse para ver los cambios',
+        icon: 'success',
+        buttons: 'OK',
+      });
+
+    } catch (error) {
+      swal({
+        title: 'Error',
+        icon: 'error',
+        text: error.response.data.message,
+        buttons: 'OK',
+      });
+      dispatch({
+        type: 'addError',
+        payload: error.response.data.message || 'Información incorrecta',
+      });
+    }
+  };
+
   const logOut = async () => {
     window.localStorage.removeItem('tokenCanchero');
     dispatch({ type: 'logout' });
@@ -148,6 +175,7 @@ export const AuthUserProvider = ({ children }) => {
         logOut,
         signUp,
         removeError,
+        updateCanchero,
       }}
     >
       {children}

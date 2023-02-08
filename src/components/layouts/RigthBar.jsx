@@ -6,7 +6,7 @@ export const RigthBar = () => {
   return (
     <Box flex={1} >
         <Box >
-            <CardPerfil encabezado={'CANCHITA CUSCO'}
+            <CardPerfil encabezado={'CANCHITAs CUSCO'}
             titulo={'Pronto más Funcionalidades'}
             />
         </Box>

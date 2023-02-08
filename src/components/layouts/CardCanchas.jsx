@@ -10,6 +10,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Avatar, Grid, Rating } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { buttonStyle, style } from '../../theme/style';
+import GarageIcon from '@mui/icons-material/Garage';
 export const CardCanchas = ({
   image,
   nombre,
@@ -17,6 +18,7 @@ export const CardCanchas = ({
   ubicacion,
   estado,
   owner,
+  aparcamiento,
   calificacion,
   isValid,
   precioHora,
@@ -35,6 +37,7 @@ export const CardCanchas = ({
         animation: 'ease-in',
         '&:hover': { transform: 'scale(1.05)' },
         maxWidth: 300,
+        minHeight: 360,
       }}
     >
       <CardMedia
@@ -70,7 +73,7 @@ export const CardCanchas = ({
               S/. {precioHora}
             </Typography>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <Typography
               sx={{
                 ...style.typography,
@@ -83,6 +86,22 @@ export const CardCanchas = ({
             >
               <RoomIcon style={{ heigth: '20', width: '10' }} />
               {ubicacion}
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography
+              sx={{
+                ...style.typography,
+                color: style.color.grey,
+                fontSize: 10,
+                fontWeight: 400,
+                marginBottom: 1,
+                marginTop: -1,
+                textAlign:'end'
+              }}
+            >
+              <GarageIcon style={{ heigth: '15', width: '15' ,marginRight:5}} />
+              {aparcamiento}
             </Typography>
           </Grid>
           <Grid item xs={3} sx={{ textAlign: 'start' }}>
@@ -148,6 +167,7 @@ export const CardCanchas = ({
                   ...buttonStyle.button,
                   fontWeight: 600,
                   fontSize: 13,
+                  
                 }}
                 size='small'
                 variant='contained'

@@ -8,7 +8,7 @@ import { TextoPortada } from '../../components/common/TextoPortada';
 import { headerStyle } from '../../theme/style';
 import { useCanchasCanchero } from '../../hooks/useCanchasCanchero';
 import { Loading } from '../../components/common/Loading/Loading';
-
+import {PieHome} from '../../components/layouts/PieHome'
 export const DashBoardCanchero = () => {
   const { canchasList, isFetching } = useCanchasCanchero();
 
@@ -25,7 +25,7 @@ export const DashBoardCanchero = () => {
           sx={{
             textAlign: 'center',
             p: { xs: 1, md: 5, sm: 2 },
-            marginTop: { xs: 3, md: 2, sm: 1 },
+            marginY:8
           }}
         >
           <div style={{ justifyContent: 'space-between' }}>
@@ -52,7 +52,7 @@ export const DashBoardCanchero = () => {
           <Box flex={3} sx={{ marginX: { md: 4, xs: 3 } }}>
             <Grid sx={{ flexGrow: 1 }} container>
               <Grid item xs={12}>
-                <Grid container justifyContent='center' spacing={3}>
+                <Grid container justifyContent='center' p={2} spacing={3}>
                   {isFetching ? (
                     <div className='containerLoading'>
                       <Loading />
@@ -68,11 +68,12 @@ export const DashBoardCanchero = () => {
                           estado={value.estado}
                           owner={value.owner}
                           calificacion={value.calificacion}
+                          aparcamiento={value.cantAparcamiento}
                           isValid={value.isValid}
                           precioHora={value.precioHora}
                           button={'Ver'}
                           link={'/canchero/canchita/'}
-                          id={index}
+                          id={value.name}
                         />
                       </Grid>
                     ))
@@ -83,6 +84,7 @@ export const DashBoardCanchero = () => {
           </Box>
         </Box>
         <ButtonAgregar />
+        <PieHome/>
       </Box>
     </Box>
   );

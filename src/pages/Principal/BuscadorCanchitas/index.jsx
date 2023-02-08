@@ -6,6 +6,7 @@ import Chimpunes from '../../../assets/images/Chimpunes.jpg';
 import { TextoCentrado } from '../../../components/common/TextoCentrado';
 import { headerStyle } from '../../../theme/style';
 import { useCanchaSearch } from '../../../hooks/useCanchaSearch';
+import { PieHome } from '../../../components/layouts/PieHome';
 
 export const DashBoard = () => {
   const { isFetching, canchaList } = useCanchaSearch();
@@ -46,7 +47,7 @@ export const DashBoard = () => {
   console.log({ term });
   return (
     <div className='background'>
-      <Box>
+      <Box >
         <Box
           sx={{
             backgroundImage: `url(${Chimpunes})`,
@@ -58,7 +59,7 @@ export const DashBoard = () => {
             sx={{
               textAlign: 'center',
               p: { xs: 1, md: 15 },
-              marginTop: { xs: 10, md: 0 },
+              marginY: { xs: 10, md: 0 },
             }}
           >
             <div style={{ justifyContent: 'space-between' }}>
@@ -77,6 +78,7 @@ export const DashBoard = () => {
           <Feed canchaList={term.length === 0 ? canchaList : canchaFiltered} />
         </Box>
       </Box>
+      <PieHome/>
     </div>
   );
 };

@@ -97,9 +97,10 @@ export const headerStyle={
     backgroundRepeat:'no-repeat',
     backgroundPosition:'center', 
     backgroundSize:'cover',
-    height:{xs:'30vh',md:'50vh'},
+    // height:{xs:'30vh',md:'50vh'},
     display:'flex',
-    justifyContent:'center'
+    justifyContent:'center',
+    alignItems:'center'
    
 }
 export const themeTypography = createTheme();

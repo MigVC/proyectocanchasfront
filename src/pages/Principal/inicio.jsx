@@ -13,10 +13,10 @@ export const HomeScreen = () => {
   return (
     <div className='banner'>
       
-      <div className='header d-flex align-items-center'>
+      <div className='header  row m-0 d-flex align-items-center'>
         
         <div >
-          <div className='text-center '>
+          <div className='col-12'>
           <TextoPrincipal
             titulo={'CANCHITAS CUSCO'}
             encabezado={'Encuentra una cancha al instante'}
@@ -107,7 +107,7 @@ export const HomeScreen = () => {
         </div>
       </div>
 
-      <PieHome />
+      <PieHome seccion={true} />
     </div>
   )
 }

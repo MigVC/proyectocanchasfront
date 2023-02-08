@@ -75,8 +75,8 @@ export const TableroHorarioDia = ({ data, columns }) => {
   // }
   const Estado = 'Disponible';
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 400 }} aria-label='simple table'>
+    <TableContainer component={Paper} sx={{ maxHeight: 850 }}>
+      <Table sx={{ minWidth: 400, }} aria-label='simple table'>
         <TableHead>
           <TableRow>
             {columns.map((columns) => (

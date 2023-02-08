@@ -15,7 +15,7 @@ export const InfoReservaCanchita = () => {
     const { setHorario, fecha } = useContext(HorarioContext);
     const Fecha=new Date(fecha)
     
-    const status='Reservado'
+    const status='Disponible'
   return (
     
     <>

@@ -1,6 +1,6 @@
 import React from 'react'
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
-import { AppBar, Box, Button, IconButton, Modal, styled, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Icon, IconButton, Modal, styled, Toolbar, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -16,7 +16,9 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import { Arco } from '../../assets/icons/arco';
 import { style } from '../../theme/style';
 import { LoginCanchero } from '../../pages/Login';
-
+import LogoCanchitasNegro from '../../assets/Logo/LogoCanchitasNegro.png'
+import LogoCanchitas from '../../assets/Logo/LogoCanchitas2.png'
+import LogoCanchitas2 from '../../assets/Logo/LogoCanchitas.png'
 const Pages=[
     {
         name:'Canchero',
@@ -53,11 +55,8 @@ export const Navbar = () => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
         <Link style={style.linkDark} to="/">
-            <Typography variant="h6" sx={{ my: 2,marginRight:5,...style.typography }}>
-            <Button>
-                <Arco/>
-            </Button>
-                Canchitas
+            <Typography variant="h6" sx={{ my: 2,...style.typography }}>
+            <img src={LogoCanchitasNegro} style={{}} height={50} width={140} />
             </Typography>
         </Link>
         <Divider />
@@ -102,24 +101,20 @@ export const Navbar = () => {
                         <MenuIcon />
                     </IconButton>
                 </Box>
-                <IconButton                
+                <Box sx={{flexGrow:1,display: { xs: 'none', md: 'flex' ,}}}>
+                <Button                
                     edge="start"
                     color="inherit"
                     // aria-label="menu"
-                    sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                    sx={{  display: { xs: 'none', md: 'flex' ,}, }}
                 >
                     <Link  to="/">
-                    <SportsSoccerIcon color='iconNavbar' sx={{width: 50, height: 50}}/>
+                    <img src={LogoCanchitas} style={{}} height={29} width={380} />
                     </Link>
-                </IconButton>
-                <Typography  variant="h6" component="div" 
-                sx={{display: { xs: 'none', md: 'flex' },fontWeight: 700,
-                letterSpacing: '.3rem',
-                ...style.typography,
-                color:style.color.letra,
-                flexGrow:1, }}>
-                    Canchitas Cusco 
-                </Typography>
+                </Button>
+                </Box>
+                
+                
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <ColorButton  onClick={handleOpen} key={Pages[0].path}  variant="contained">
                         {Pages[0].name}
@@ -146,7 +141,7 @@ export const Navbar = () => {
                    sx={{ position:'relative',display: { xs: 'flex', md: 'none' },mr:{xs:1} }}
                 >
                     <Link to="/">
-                    <SportsSoccerIcon color='iconNavbar' sx={{width: 50, height: 50}}/>
+                    <img src={LogoCanchitas} style={{}} height={22} width={250} />
                     </Link>
                 </IconButton>
             </Toolbar>

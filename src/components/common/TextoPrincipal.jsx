@@ -8,7 +8,7 @@ export const TextoPrincipal = ({encabezado,titulo,contenido,button}) => {
   return (
     
     <ThemeProvider theme={themeTypographyPrincipal}>
-    <Box sx={{textAlign: 'center', marginY:2,p:{md:4,xs:2},} }>
+    <Box sx={{textAlign: 'center', p:{md:4,xs:2},} }>
       <Typography variant="h3">{encabezado}</Typography>
       <Typography variant="h1">{titulo}</Typography>
       <Typography variant="h4" sx={{marginY:1}}>{contenido}</Typography>

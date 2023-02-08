@@ -16,6 +16,8 @@ import {TextoCentrado} from '../../../components/common/TextoCentrado'
 import { HorarioContext } from '../../../context/HorarioContext';
 import { TableroDias } from '../../Canchero/AdminCanchitas/components/TableroDias';
 import { InfoReservaCanchita } from './components/InfoReservaCanchita';
+import { TextoHeader } from '../../../components/common/TextoHeader';
+import {PieHome} from '../../../components/layouts/PieHome'
 const rows = [
   {
     id:'Lunes',
@@ -70,39 +72,31 @@ export const TableroCanchitaUsuario = () => {
       <Box sx={{
           ...headerStyle,
           backgroundImage:`url(${FondoHorario})`,
+          // background: `linear-gradient(#e66465, #9198e5) url(${FondoHorario})` 
         }}>
-        <Box alignContent='center' sx={{textAlign: 'center', p:{xs:1,md:5,sm:2},marginTop:{xs:3,md:2,sm:1}}}>
+        <Box my={{xs:5}} alignContent='center' sx={{textAlign: 'center', p:{xs:1,md:5,sm:2},}}>
         <div style={{justifyContent:'space-between'}}>
-          <TextoPortada
-            titulo={`Horario de la Canchita ${params.canchitaid}`}
+          <TextoHeader
+            encabezado={'HORARIO DE LA CANCHITA'}
+            titulo={`${params.canchitaid.toLocaleUpperCase()}`}
             contenido={'Los mejores amigos los regala el futbol'}
             />
           </div>
         </Box>
       </Box>
-      <Box>
+      <Box sx={{marginTop:-2,}}>
         <TextoCentrado
-        encabezado={''}
+        encabezado={'Usuario '}
         titulo={'ATENCIÓN'}
         contenido={'Antes de elegir el horario ten en cuenta lo siguiente'}
         />
       </Box>
       <Box>
-        <Box sx={{ p:4,textAlign: 'center',color:'gray',backgroundColor:'rgb(244, 229, 194,0.2)' }}>
-          <Grid container >
+        <Box sx={{p:2, marginTop:-3,display:'flex',alignItems:'center',paddingX:{md:10,xs:2},textAlign: 'center',color:'gray',backgroundColor:'rgb(244, 229, 194,0.1)' }}>
+          <Grid container spacing={5} >
             <Grid item xs={4}>
               <Grid item xs={12}>
-              <QueryBuilderIcon sx={{color:'#33c9dc',width: {md:100,sm:75,xs:50}, height:{md:100,sm:75,xs:50}}}/>
-              </Grid>
-              <Grid item xs={12}>
-              <Typography style={style.typography}>
-                  Encuentra el horario perfecto para ti 
-              </Typography>
-              </Grid>
-            </Grid>
-            <Grid item xs={4}>
-              <Grid item xs={12}>
-              <TimerOutlinedIcon sx={{color:'#f50057',width: {md:100,sm:75,xs:50}, height:{md:100,sm:75,xs:50}}} />
+              <TimerOutlinedIcon sx={{color:'#f50057',width: {md:70,sm:68,xs:50}, height:{md:70,sm:68,xs:50}}} />
               </Grid>
               <Grid item xs={12}>
               <Typography style={style.typography}>
@@ -112,7 +106,7 @@ export const TableroCanchitaUsuario = () => {
             </Grid>
             <Grid item xs={4}>
               <Grid item xs={12}>
-              <DateRangeIcon sx={{color:'#ffc400',width: {md:100,sm:75,xs:50}, height:{md:100,sm:75,xs:50}}}/>
+              <DateRangeIcon sx={{color:'#ffc400',width: {md:70,sm:68,xs:50}, height:{md:70,sm:68,xs:50}}}/>
               </Grid>
               <Grid item xs={12}>
               <Typography style={style.typography}>
@@ -120,13 +114,33 @@ export const TableroCanchitaUsuario = () => {
               </Typography>
               </Grid>
             </Grid>
+            <Grid item xs={4}>
+              <Grid item xs={12}>
+              <QueryBuilderIcon sx={{color:'#33c9dc',width: {md:70,sm:68,xs:50}, height:{md:70,sm:68,xs:50}}}/>
+              </Grid>
+              <Grid item xs={12}>
+              <Typography style={style.typography}>
+                  Encuentra el horario perfecto para ti 
+              </Typography>
+              </Grid>
+            </Grid>
           </Grid>
         </Box>
-        <Box sx={{ p:4,textAlign: 'center',backgroundImage:`url(${FondoHorario})`,marginTop:4}}>
-          <Grid container justifyItems='center' alignContent='center' justifyContent='center' textAlign='center'>
+        
+        <Box >
+        <>
+          <Box sx={{ p:4,textAlign: 'center' }}>
+            <Grid container spacing={2} px={{md:6,xs:1}}>
+              <Grid item xs={12} sm={12} md={8}  justifyContent='center' alignContent='center' alignItems='center' 
+              >
+                <Grid item xs={12}>
+                    <Typography style={{...style.typography,color:style.color.letraDark,fontSize:35,fontWeight:800}} >HORARIO</Typography>
+                  </Grid>
+                  <Grid container justifyItems='center' alignContent='center' justifyContent='center' textAlign='center'>
             <Paper
               component="form"
-              sx={{ p: '2px 4px', display: 'flex', alignItems: 'center',borderRadius:50 ,maxWidth:1600 ,}}
+              elevation={0}
+              sx={{ p: '2px 4px', display: 'flex', alignItems: 'center',borderRadius:50 ,maxWidth:1600 ,m:2}}
             >
             <LocalizationProvider  dateAdapter={AdapterDayjs} >
               <DatePicker
@@ -143,18 +157,11 @@ export const TableroCanchitaUsuario = () => {
               />
             </LocalizationProvider>
             </Paper>
-          </Grid>
-        </Box>
-        <Box >
-        <>
-          <Box sx={{ p:4,textAlign: 'center' }}>
-            <Grid container spacing={1} p={{md:6,xs:1}}>
-              <Grid item xs={12} sm={12} md={8}  justifyContent='center' alignContent='center' alignItems='center' 
-              >
-                <Grid item xs={12}>
-                    <Typography style={{...style.typography,color:style.color.letraDark,fontSize:35,fontWeight:800}} >HORARIO</Typography>
-                  </Grid>
-                <TableroDias habilitado={'usuario'} rows={rows} dia={dia} setDia={setDia} columns={columns}/>
+          </Grid >
+          <Box sx={{display:'flex',justifyContent:'center'}}>
+          <TableroDias habilitado={'usuario'} rows={rows} dia={dia} setDia={setDia} columns={columns}/>
+          </Box>
+                
               </Grid>
               <Grid item xs={12} sm={12} md={4}  
               >
@@ -165,6 +172,7 @@ export const TableroCanchitaUsuario = () => {
         </>
         </Box>
       </Box>
+      <PieHome/>
     </Box>
   )
 }

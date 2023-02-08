@@ -66,7 +66,7 @@ export const TableroDias = ({habilitado,rows,setDia,dia,columns}) => {
   return (
     <>
     <Box
-      sx={{ maxWidth: { xs: 500, sm: 750 },bgcolor: 'background.paper',}}
+      sx={{ maxWidth: { xs: 400, sm: 750 },bgcolor: 'background.paper',}}
     >
       <Tabs
         orientation='horizontal'
@@ -75,7 +75,7 @@ export const TableroDias = ({habilitado,rows,setDia,dia,columns}) => {
         value={(new Date(fecha).getDay()-1)===-1? 6: (new Date(fecha).getDay()-1)}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderColor: 'divider' }}
+        sx={{  borderColor: 'divider' }}
       >
         {
         rows.map((value,index)=>(

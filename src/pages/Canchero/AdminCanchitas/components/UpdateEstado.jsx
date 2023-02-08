@@ -28,6 +28,7 @@ const stados = [
 ];
 export const TableActionsCanchero = ({props,status}) => {
     const [open, setOpen] = useState(false);
+    const [reservado, setReservado] = useState('');
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm({})
@@ -46,7 +47,7 @@ export const TableActionsCanchero = ({props,status}) => {
       
       
     }
- 
+    console.log(reservado)
   return (
     <>
     <IconButton onClick={handleOpen} >
@@ -88,6 +89,7 @@ export const TableActionsCanchero = ({props,status}) => {
                     select
                     fullWidth
                     defaultValue={status}
+                    // onChange={setReservado('j')}
                     SelectProps={{
                       native: true,
                     }}
@@ -100,7 +102,7 @@ export const TableActionsCanchero = ({props,status}) => {
                       </option>
                     ))}
                   </TextField>
-                  {
+                  { 
                     <TextField
                     fullWidth
                     style={{marginTop:9}}

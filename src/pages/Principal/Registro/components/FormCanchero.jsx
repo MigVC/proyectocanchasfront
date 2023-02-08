@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Formik } from 'formik';
 
 import swal from 'sweetalert';
-import { Grid, Paper, TextField } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
 import { AuthUserContext } from '../../../../context/AuthUserContext';
 
 export const FormCanchero = () => {

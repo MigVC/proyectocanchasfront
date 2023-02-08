@@ -3,7 +3,6 @@ import React, { useContext } from 'react'
 import Box from '@mui/material/Box';
 import {  Grid, Paper,TextField, Typography } from '@mui/material';
 import FondoHorario from '../../../assets/images/FondoHorario.jpg'
-import { TextoPortada } from '../../../components/common/TextoPortada';
 import { RigthBar } from '../../../components/layouts/RigthBar';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';

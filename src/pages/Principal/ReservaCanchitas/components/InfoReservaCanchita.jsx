@@ -12,7 +12,7 @@ export const InfoReservaCanchita = () => {
   const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const { setHorario, fecha } = useContext(HorarioContext);
+    const { fecha } = useContext(HorarioContext);
     const Fecha=new Date(fecha)
     
     const status='Disponible'
